@@ -65,6 +65,21 @@ auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
 
+#START OF PERSONAL CODE
+#Adding fields to auth_user table
+auth.settings.extra_fields['auth_user']= \
+    [
+    Field('venmo'),
+    Field('college_affiliation', requires=IS_IN_SET(['Oakes', 'Rachael Carson', 'Porter', 'Merrill', 'Crown', 'Stevenson', 'Kresge', 'Cowell', 'College 9', 'College 10'])),
+    Field('mobile_phone'),
+    Field('Photo')
+    ]
+
+#Messing around with having
+#db.auth_user.campus_location.requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)
+#END OF PERSONAL CODE
+
+
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
