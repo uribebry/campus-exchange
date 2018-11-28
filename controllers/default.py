@@ -46,6 +46,17 @@ def add():
         session.flash = T('Please correct the info')
     return dict(form=form)
 
+@auth.requires_login()
+def add_post():
+    form = SQLFORM(db.post)
+    #form.vars.user_id = int(request.args[0])
+
+    if form.process().accepted:
+        redirect(URL('default', 'index'))
+    elif form.errors:
+        session.flash = T('Please correct the info')
+    return dict(form=form)
+
 def user():
     """
     exposes:

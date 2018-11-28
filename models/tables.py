@@ -12,6 +12,20 @@ import datetime
 def get_user_email():
     return auth.user.email if auth.user is not None else None
 
+def get_current_time():
+    return datetime.datetime.utcnow()
+
+db.define_table('post',
+                Field('user_id', 'reference auth_user', default=auth.user if auth.user is not None else None),
+                Field('post_title', label='Title', requires=IS_NOT_EMPTY()),
+                Field('post_content', 'text', label='Description'),
+                Field('category', requires=IS_IN_SET(['Book', 'Electronics', 'Clothing', 'Furniture'])), #Pic upload for later
+                Field('post_location', label='Meetup Location', requires=IS_IN_SET(['N/A', 'College 9/10', 'Cowell College'])), #Category and location will be from set values
+                Field('post_time', 'datetime', default=get_current_time())
+                )
+
+db.post.user_id.writable = False
+db.post.post_time.readable = db.post.post_time.writable = False
 
 db.define_table('checklist',
                 Field('user_email', default=get_user_email()),
