@@ -70,9 +70,12 @@ plugins = PluginManager()
 auth.settings.extra_fields['auth_user']= \
     [
     Field('venmo'),
-    Field('college_affiliation', requires=IS_IN_SET(['Oakes', 'Rachael Carson', 'Porter', 'Merrill', 'Crown', 'Stevenson', 'Kresge', 'Cowell', 'College 9', 'College 10'])),
+    Field('college_affiliation', requires=IS_IN_SET(['Oakes', 'Rachael Carson',
+                                                     'Porter', 'Merrill', 'Crown',
+                                                     'Stevenson', 'Kresge', 'Cowell',
+                                                     'College 9', 'College 10'])),
     Field('mobile_phone'),
-    Field('Photo')
+    Field('Photo','upload')
     ]
 
 #Messing around with having
@@ -82,6 +85,9 @@ auth.settings.extra_fields['auth_user']= \
 
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
+
+db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
+    error_message='Only ucsc.edu email addresses allowed.'))
 
 # configure email
 mail = auth.settings.mailer
