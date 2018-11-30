@@ -75,7 +75,8 @@ auth.settings.extra_fields['auth_user']= \
                                                      'Stevenson', 'Kresge', 'Cowell',
                                                      'College 9', 'College 10'])),
     Field('mobile_phone'),
-    Field('Photo','upload')
+    Field('Photo','upload'),
+    Field('stars', readable=False, writable=False, default=0)
     ]
 
 #Messing around with having
