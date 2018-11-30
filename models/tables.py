@@ -39,6 +39,7 @@ db.define_table('listing',
                 Field('email', default=get_user_email()),
                 Field('likes', 'integer', default=0),
                 Field('description', 'text'),
+                Field('college_location'),
                 # Field('date_posted', 'date', default=get_date())
                 )
 

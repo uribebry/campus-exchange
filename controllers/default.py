@@ -109,7 +109,7 @@ def edit():
     grid = SQLFORM(db.listing, record=p)
     if grid.process().accepted:
         session.flash = T('updated')
-        redirect(URL('default', 'add', args=[p.id]))
+        redirect(URL('default', 'posting', args=[p.id]))
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
@@ -204,7 +204,9 @@ def posting():
         args=request.args[:start_idx],
         fields=[db.listing.sold,
                 db.listing.seller,
+                db.listing.college_location,
                 db.listing.item,
+                db.listing.description,
                 db.listing.price,
                 db.listing.user_id,
                 # db.listing.date_posted
