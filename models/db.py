@@ -76,7 +76,8 @@ auth.settings.extra_fields['auth_user']= \
                                                      'College 9', 'College 10'])),
     Field('mobile_phone'),
     Field('Photo','upload'),
-    Field('stars', readable=False, writable=False, default=0)
+    Field('stars', 'integer', writable=False, default=0),
+    Field('number_of_reviews', 'integer', writable=False, default=0)
     ]
 
 #Messing around with having
