@@ -145,6 +145,7 @@ def soldCheck():
 def posting():
     #the posting to show the grid
     show_all = request.args(0) == 'all'
+    links = []
     q = (db.listing) if show_all else (db.listing.sold == False)
     export_classes = dict(csv=True, json=False, html=False,
          tsv=False, xml=False, csv_with_hidden_cols=False,
@@ -176,11 +177,6 @@ def posting():
         b = A('Profile', _class='btn btn-info', _href=URL('default','profile',args=[row.user_id]))
         return b
     
-
-# # shortens the length of the descriptions on posting.html
-#     def description(row):
-#         return row.description[:40]
-
     # all the buttons for posting.html
     links = [
         dict(header='', body = viewButton),
@@ -189,10 +185,6 @@ def posting():
         dict(header='', body = editButton),
         dict(header='', body = soldButton),
         ]
-
-    # if len(request.args) == 0:
-    #     links.append(dict(header='Description', body = shorterL))
-    #     db.listing.description.readable = False
 
     start_idx = 1 if show_all else 0
     export_classes = dict(csv=True, json=False, html=False,
@@ -216,15 +208,18 @@ def posting():
         deletable=False,
         csv=False,
         details=False,
+        create=False,
+        maxtextlength=50,
+        paginate=15
         )
 
     add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
 
 # to show all or only avalible items
     if show_all:
-        button = A('See only avalible listing', _class='btn btn-default', _href=URL('default', 'posting'))
+        button = A('See only avalible listings', _class='btn btn-default', _href=URL('default', 'posting'))
     else:
-        button = A('See all listing', _class='btn btn-default', _href=URL('default', 'posting', args=['all']))
+        button = A('See all listings', _class='btn btn-default', _href=URL('default', 'posting', args=['all']))
 
     return dict(grid=grid, button=button, add=add)
 

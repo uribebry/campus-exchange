@@ -50,9 +50,14 @@
       
       <ul>
         <div class="menu_bar">
+          {{if auth.user:}}
           <li><a href="{{=URL('default', 'add')}}">Post</a></li>
           <li><a href="{{=URL('default', 'favs')}}">Saved Posts</a></li>
-          <li><a href="{{=URL('default', 'profile')}}">Profile</a></li>
+          {{pass}}
+          <li><form action="/campusexchange/default/posting?keywords=" enctype="multipart/form-data" method="GET">
+            <li><input class="form-control" id="w2p_keywords" name="keywords" onfocus="jQuery('#w2p_query_fields').change();jQuery('#w2p_query_panel').slideDown();" type="text" value=""></li>
+            <input class="btn btn-default" type="submit" value="Search"><
+          </form></li>
         </div>
       </ul>
 

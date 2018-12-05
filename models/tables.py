@@ -55,6 +55,9 @@ db.listing.user_id.writable = db.listing.user_id.readable = False
 db.listing.seller.writable = False
 db.listing.phone.writable = db.listing.phone.readable = False
 # db.listing.date_posted.writable = False
+# db.listing.description.readable = False
+
+
 db.listing.email.writable = db.listing.email.readable = False
 
 # after defining tables, uncomment below to enable auditing
