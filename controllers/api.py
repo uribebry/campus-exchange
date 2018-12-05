@@ -87,3 +87,15 @@ def edit_memo():
             memo = request.vars.memo_content,
         )
     return dict()
+
+@auth.requires_signature()
+def add_post():
+    post_id = db.post.insert(
+        post_title=request.vars.post_title,
+        post_price=request.vars.post_price,
+        post_description=request.vars.post_content,
+        post_category=request.vars.post_category,
+        post_location=request.vars.post_location,
+    )
+    # We return the id of the new post, so we can insert it along all the others.
+    return response.json(dict(post_id=post_id))
