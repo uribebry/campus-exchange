@@ -77,7 +77,8 @@ auth.settings.extra_fields['auth_user']= \
                                                      'College 9', 'College 10'])),
     Field('mobile_phone'),
     Field('Photo','upload'),
-    Field('stars', 'integer', writable=False, default=0),
+    Field('total_stars', 'double', readable=False,writable=False),
+    Field('stars_rating', 'double', writable=False, default=0),
     Field('number_of_reviews', 'integer', writable=False, default=0),
     Field('joined_on', 'datetime', default = request.now, requires = IS_DATE(format=('%m/%d/%Y')), writable =False)
     ]
@@ -94,17 +95,17 @@ db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
 
 # configure email
 mail = auth.settings.mailer
-mail.settings.server = 'logging' if request.is_local else myconf.get('smtp.server')
-mail.settings.sender = myconf.get('smtp.sender')
+mail.settings.server = 'logging'
+mail.settings.sender = 'exchangecampus@gmail.com'
 mail.settings.login = myconf.get('smtp.login')
-mail.settings.tls = myconf.get('smtp.tls') or False
-mail.settings.ssl = myconf.get('smtp.ssl') or False
+mail.settings.tls = False
+mail.settings.ssl = False
 
 # configure auth policy
-auth.settings.registration_requires_verification = False
+auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
-auth.settings.auth_two_factor_enabled = True
+auth.settings.auth_two_factor_enabled = False
 
 
 # More API examples for controllers:
