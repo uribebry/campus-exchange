@@ -10,9 +10,9 @@
     <link href="{{=URL('static','css/myapp.css')}}" rel="stylesheet" type="text/css"/>
     <link href="{{=URL('static','css/navbar.css')}}" rel="stylesheet" type="text/css"/>
 
-
+<!-- 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script> -->
 
     <link rel="stylesheet" href="{{=URL('static', 'font-awesome-4.7.0/css/font-awesome.min.css')}}">
     <!-- Latest compiled and minified CSS -->
@@ -54,10 +54,14 @@
           <li><a href="{{=URL('default', 'add')}}">Post</a></li>
           <li><a href="{{=URL('default', 'favs')}}">Saved Posts</a></li>
           {{pass}}
-          <li><form action="/campusexchange/default/posting?keywords=" enctype="multipart/form-data" method="GET">
-            <li><input class="form-control" id="w2p_keywords" name="keywords" onfocus="jQuery('#w2p_query_fields').change();jQuery('#w2p_query_panel').slideDown();" type="text" value=""></li>
-            <input class="btn btn-default" type="submit" value="Search"><
-          </form></li>
+          <li>
+            <form action="/campusexchange/default/posting/all?keywords=" enctype="multipart/form-data" method="GET">
+              <li>
+                <input class="form-control" id="w2p_keywords" name="keywords" onfocus="jQuery('#w2p_query_fields').change();jQuery('#w2p_query_panel').slideDown();" type="text" value="">
+              </li>
+              <input class="fas fa-search" type="submit" value="Search"><
+            </form>
+          </li>
         </div>
       </ul>
 
