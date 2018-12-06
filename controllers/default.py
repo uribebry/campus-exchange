@@ -77,10 +77,16 @@ def call():
 @auth.requires_login()
 def add():
     #Function to add a listing
-    grid = SQLFORM(db.listing)
+    grid = SQLFORM(db.listing,
+        fields= ['item',
+                'category',
+                'price',
+                'image',
+                'description']
+                )
     if grid.process().accepted:
         session.flash = T('Post Added')
-        redirect(URL('default', 'posting'))
+        redirect(URL('default', 'index'))
     elif grid.errors:
         session.flash = T('Please correct the info')
     export_classes = dict(csv=True, json=False, html=False,
@@ -122,13 +128,13 @@ def delete():
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
     if p.user_id != auth.user_id:
         session.flash = T('You are not authorized!')
-        redirect(URL('default', 'posting'))
-    confirm = FORM.confirm('delete listing')
+        redirect(URL('default', 'posting', args=[p.category]))
+    # confirm = FORM.confirm('delete listing')
     grid = SQLFORM(db.listing, record = p, readonly = True, upload = URL('download'))
-    if confirm.accepted:
-        db(db.listing.id == p.id).delete()
-        session.flash = T('listing is deleted')
-        redirect(URL('default', 'posting'))
+    # if confirm.accepted:
+    db(db.listing.id == p.id).delete()
+    session.flash = T('listing is deleted')
+    redirect(URL('default', 'posting',args=[p.category]))
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
@@ -138,15 +144,16 @@ def delete():
 @auth.requires_signature()
 def soldCheck():
     #an item to show the user the avalibility of a product
+    row = request.args(0)
     item = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
     item.update_record(sold = not item.sold) 
-    redirect(URL('default', 'posting'))
+    redirect(URL('default', 'posting', args=[item.category]))
 
 def posting():
     #the posting to show the grid
-    show_all = request.args(0) == 'all'
     links = []
-    q = (db.listing) if show_all else (db.listing.sold == False)
+    q = (db.listing) if request.args(0) == 'all' else db(db.listing.category == request.args(0))
+
     export_classes = dict(csv=True, json=False, html=False,
          tsv=False, xml=False, csv_with_hidden_cols=False,
          tsv_with_hidden_cols=False)
@@ -186,14 +193,14 @@ def posting():
         dict(header='', body = soldButton),
         ]
 
-    start_idx = 1 if show_all else 0
+    # start_idx = 1 if show_all else 0
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
 
 # declear the grid once
     grid = SQLFORM.grid(q,
-        args=request.args[:start_idx],
+        args=request.args[:1],
         fields=[db.listing.sold,
                 db.listing.seller,
                 db.listing.college_location,
@@ -215,12 +222,6 @@ def posting():
 
     add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
 
-# to show all or only avalible items
-    if show_all:
-        button = A('See only avalible listings', _class='btn btn-default', _href=URL('default', 'posting'))
-    else:
-        button = A('See all listings', _class='btn btn-default', _href=URL('default', 'posting', args=['all']))
-
-    return dict(grid=grid, button=button, add=add)
+    return dict(grid=grid, add=add)
 
 

@@ -12,9 +12,6 @@ import datetime
 def get_user_email():
     return auth.user.email if auth.user is not None else None
 
-def get_date():
-    return request.now if auth.user is not None else None
-
 def get_name():
     return auth.user.first_name if auth.user is not None else None
 
@@ -30,6 +27,9 @@ db.define_table('checklist',
 
 db.define_table('listing',
                 Field('item'),
+                Field('category',requires=IS_IN_SET(['Books', 'Electronics',
+                                                     'Clothes', 'Furniture', 'Tutor',
+                                                     'Haircut'])),
                 Field('price', 'decimal(6,2)'),
                 Field('sold', 'boolean', default=False),
                 Field('image', 'upload'),
@@ -39,8 +39,11 @@ db.define_table('listing',
                 Field('email', default=get_user_email()),
                 Field('likes', 'integer', default=0),
                 Field('description', 'text'),
-                Field('college_location'),
-                # Field('date_posted', 'date', default=get_date())
+                Field('college_location',requires=IS_IN_SET(['Oakes', 'Rachael Carson',
+                                                     'Porter', 'Merrill', 'Crown',
+                                                     'Stevenson', 'Kresge', 'Cowell',
+                                                     'College 9', 'College 10','Other'])),
+                # Field('date_posted', 'date', default=request.now)
                 )
 
 db.checklist.user_email.writable = False
@@ -50,7 +53,8 @@ db.checklist.id.writable = db.checklist.id.readable = False
 # Hides the check box 'is_public' for the user when creating a memo
 db.checklist.is_public.readable = db.checklist.is_public.writable = False
 
-db.listing.likes.writable = False
+db.listing.sold.writable = False
+db.listing.likes.writable = db.listing.likes.writable = False
 db.listing.user_id.writable = db.listing.user_id.readable = False
 db.listing.seller.writable = False
 db.listing.phone.writable = db.listing.phone.readable = False
