@@ -59,6 +59,7 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # (more options discussed in gluon/tools.py)
 
 from gluon.tools import Auth, Service, PluginManager
+from datetime import datetime
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=myconf.get('host.names'))
@@ -75,11 +76,13 @@ auth.settings.extra_fields['auth_user']= \
                                                      'Stevenson', 'Kresge', 'Cowell',
                                                      'College 9', 'College 10'])),
     Field('mobile_phone'),
-    Field('Photo','upload')
+    Field('Photo','upload'),
+    Field('stars', 'integer', writable=False, default=0),
+    Field('number_of_reviews', 'integer', writable=False, default=0),
+    Field('joined_on', 'datetime', default = request.now, requires = IS_DATE(format=('%m/%d/%Y')), writable =False)
     ]
 
 #Messing around with having
-#db.auth_user.campus_location.requires = IS_NOT_EMPTY(error_message=auth.messages.is_empty)
 #END OF PERSONAL CODE
 
 
@@ -101,6 +104,8 @@ mail.settings.ssl = myconf.get('smtp.ssl') or False
 auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+auth.settings.auth_two_factor_enabled = True
+
 
 # More API examples for controllers:
 #
