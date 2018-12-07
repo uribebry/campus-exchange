@@ -182,8 +182,9 @@ def posting():
         return b
 
     def profileButton(row):
-        b = A('Profile', _class='btn btn-info', _href=URL('default','profile',args=[row.user_id]))
+        b = A('Profile', _class='btn btn-info', _href=URL('default','seller_profile',args=[row.id]))
         return b
+
     
     # all the buttons for posting.html
     links = [
@@ -225,4 +226,7 @@ def posting():
 
     return dict(grid=grid, add=add)
 
-
+@auth.requires_login()
+def seller_profile():
+    p = db.listing(request.args(0)) or redirect(URL('default', 'seller_profile'))
+    return dict(p=p)
