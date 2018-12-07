@@ -1,7 +1,16 @@
 {{extend 'layout.html'}}
 
-<div class="mycontent">
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
 
+    var is_logged_in = {{='false' if auth.user is None else 'true'}};
+</script>
+{{end}}
+
+
+<div class="mycontent">
 
     {{=grid}}
 

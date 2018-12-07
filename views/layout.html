@@ -96,7 +96,7 @@
                 <i class="fa fa-sign-in" aria-hidden="true"></i>{{=T(' Login')}}</a>
               {{if 'register' not in auth.settings.actions_disabled:}}
               <a class="dropdown-item" href="{{=URL('default','user/register')}}">
-                <i class="fa fa-user-plus" aria-hidden="true"></i>{{=T(' Sign up')}}</a>
+                <i class="fa fa-user-plus" aria-hidden="true"></i>{{=T('Sign up')}}</a>
               {{pass}}
               {{if 'retrieve_password' not in auth.settings.actions_disabled:}}
               <a class="dropdown-item" href="{{=URL('default','user/retrieve_password')}}">

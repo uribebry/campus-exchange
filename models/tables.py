@@ -11,7 +11,7 @@ import datetime
 
 def get_user_email():
     return auth.user.email if auth.user is not None else None
-
+  
 def get_name():
     return auth.user.first_name if auth.user is not None else None
 
@@ -52,6 +52,7 @@ db.checklist.updated_on.writable = db.checklist.updated_on.readable = False
 db.checklist.id.writable = db.checklist.id.readable = False
 # Hides the check box 'is_public' for the user when creating a memo
 db.checklist.is_public.readable = db.checklist.is_public.writable = False
+
 
 db.listing.sold.writable = False
 db.listing.likes.writable = db.listing.likes.writable = False
