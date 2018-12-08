@@ -215,7 +215,7 @@ var app = function() {
 
             post_title: "",
             post_price: 0,
-            post_content: ""
+            post_content: "",
         },
         methods: {
             toggle_public_button: self.toggle_public_button,
@@ -228,6 +228,8 @@ var app = function() {
             cancel_edit: self.cancel_edit,
 
             add_post: self.add_post,
+
+            get_profile_info:self.get_profile_info,
         }
 
     });

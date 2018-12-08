@@ -223,10 +223,15 @@ def posting():
         )
 
     add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
-
     return dict(grid=grid, add=add)
 
 @auth.requires_login()
 def seller_profile():
     p = db.listing(request.args(0)) or redirect(URL('default', 'seller_profile'))
-    return dict(p=p)
+    post_id = request.args(0)
+    info = db(db.listing.id == post_id).select().first()
+    seller_email =  info.email
+    profile_info = db(db.auth_user.email==seller_email).select().first()
+    return dict(p=p,seller_info=info,profile=profile_info)
+
+
