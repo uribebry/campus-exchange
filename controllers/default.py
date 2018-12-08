@@ -178,7 +178,7 @@ def posting():
         return b
 
     def viewButton(row):
-        b = A('View', _class='btn btn-info', _href=URL('default','view',args=[row.id]))
+        b = A('View', _class='btn btn-info', _href=URL('default','view_page',args=[row.id]))
         return b
 
     def profileButton(row):
@@ -232,6 +232,14 @@ def seller_profile():
     info = db(db.listing.id == post_id).select().first()
     seller_email =  info.email
     profile_info = db(db.auth_user.email==seller_email).select().first()
-    return dict(p=p,seller_info=info,profile=profile_info)
+    return dict(p=p,profile=profile_info)
+
+def view_page():
+    p = db.listing(request.args(0)) or redirect(URL('default', 'view_page'))
+    post_id = request.args(0)
+    item_info = db(db.listing.id == post_id).select().first()
+
+    return dict(p=p,item=item_info)
+
 
 
