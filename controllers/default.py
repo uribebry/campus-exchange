@@ -83,7 +83,8 @@ def add():
                 'category',
                 'price',
                 'image',
-                'description']
+                'description',
+                 'college_location']
                 )
     if grid.process().accepted:
         session.flash = T('Post Added')
