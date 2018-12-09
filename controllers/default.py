@@ -238,8 +238,10 @@ def view_page():
     p = db.listing(request.args(0)) or redirect(URL('default', 'view_page'))
     post_id = request.args(0)
     item_info = db(db.listing.id == post_id).select().first()
+    user_info = item_info.email
+    profile_info = db(db.auth_user.email==user_info).select().first()
 
-    return dict(p=p,item=item_info)
+    return dict(p=p,item=item_info,profile=profile_info)
 
 
 

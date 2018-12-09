@@ -1,10 +1,36 @@
 {{extend 'layout.html'}}
 
 
+<div>
+	First Name
+		{{=item.seller}}
+	<br>
 
-<p>
-	VIEW PAGE
 
-	{{=item.seller}}
-</p>
+	Item name
+	{{=item.item}}
+	<br>
+	Price
+	{{=item.price}}
+	<br>
+	sold?
+	{{=item.sold}}
+	<br>
+	image
+	{{=item.image}}
+	<br>
+	phone
+	{{=profile.mobile_phone}}
+	<br>
+	email
+	{{=item.email}}
+	<br>
+	description
+	{{=item.description}}
+	<br>
+	college location
+	{{=item.college_location}}
+</div>
+
+
 
