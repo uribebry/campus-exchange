@@ -2,6 +2,14 @@
 
     <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{{=URL('static','css/user_profile.css')}}" rel="stylesheet" type="text/css"/>
+
 <style>
 	body { background-image: url("images/all.jpg") }
 </style>
@@ -14,17 +22,10 @@
 
 	<div class="column left">
 		<h2>Seller info:</h2>
-		<p>
-	  		First Name
-			{{=item.seller}}
-			  <br>
-	 		 Mobile
-			{{=profile.mobile_phone}}
-			  <br>
-	  		Email
-			{{=item.email}}
-			<br>
-	  	</p>
+		<p><strong> First Name: </strong> {{=item.seller}}</p>
+		 <p><strong> Mobile: </strong> {{=profile.mobile_phone}}</p>
+		 <p><strong> Email: </strong> {{=item.email}}</p>
+
 	</div>
 
 	<div class="column middle wrap">
@@ -35,25 +36,12 @@
 
 	<div class="column right ">
 		<h2>Item Info:</h2>
-    	<p>
-			Item name
-			{{=item.item}}
-			<br>
-			description
-			{{=item.description}}
-			<br>
-			Price
-			{{=item.price}}
-			<br>
-			college location
-			{{=item.college_location}}
-			<br>
-			sold?
-			{{=item.sold}}
-			<br>
-			Date Posted
-			{{=item.date_posted}}
-		</p>
+		 <p><strong> Name: </strong> {{=item.item}}</p>
+		 <p><strong> Price: </strong> ${{=item.price}}</p>
+		 <p><strong> Description: </strong> {{=item.item}}</p>
+		 <p><strong> Location: </strong> {{=item.college_location}}</p>
+		 <p><strong> Sold?: </strong> {{=item.sold}}</p>
+		 <p><strong> Date Posted: </strong> {{=item.date_posted}}</p>
 	</div>
 
 	<div class="column right_blank">
