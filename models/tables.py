@@ -8,6 +8,7 @@
 # Consult manual for more options, validators, etc.
 
 import datetime
+now = datetime.datetime.today()
 
 def get_user_email():
     return auth.user.email if auth.user is not None else None
@@ -43,7 +44,8 @@ db.define_table('listing',
                                                      'Porter', 'Merrill', 'Crown',
                                                      'Stevenson', 'Kresge', 'Cowell',
                                                      'College 9', 'College 10','Other'])),
-                # Field('date_posted', 'date', default=request.now)
+                Field('date_posted', 'datetime', default=now, writable=False)
+
                 )
 
 db.checklist.user_email.writable = False
