@@ -48,6 +48,11 @@ db.define_table('listing',
 
                 )
 
+db.define_table('saved_posts',
+                Field('user_id', 'reference auth_user', default=get_user_id()),
+                Field('listing_id', 'reference listing')
+                )
+
 db.checklist.user_email.writable = False
 db.checklist.user_email.readable = False
 db.checklist.updated_on.writable = db.checklist.updated_on.readable = False

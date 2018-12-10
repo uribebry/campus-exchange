@@ -243,3 +243,8 @@ def view_page():
     profile_info = db(db.auth_user.email==user_info).select().first()
     return dict(p=p,item=item_info,profile=profile_info)
 
+@auth.requires_login()    
+def saved_posts():
+    posts = db(db.saved_posts.user_id == auth.user.id).select()
+    return dict(posts=posts)
+

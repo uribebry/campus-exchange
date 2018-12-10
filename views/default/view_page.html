@@ -1,6 +1,10 @@
 {{extend 'layout.html'}}
 
     <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
+<script>
+    var save_post_url = "{{=URL('api', 'save_post', user_signature=True)}}";
+
+</script>
 
 <style>
 	body { background-image: url("images/all.jpg") }
@@ -51,10 +55,13 @@
 			sold?
 			{{=item.sold}}
 			<br>
-			Date POsted
+			Date Posted
 			{{=item.date_posted}}
 		</p>
-	</div>
+    </div>
+    <div>
+        <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
+    </div>
 
 	<div class="column right_blank">
 	</div>
