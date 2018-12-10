@@ -19,6 +19,7 @@ db.define_table('post',
                 Field('user_id', 'reference auth_user', default=auth.user if auth.user is not None else None),
                 Field('post_title', label='Title', requires=IS_NOT_EMPTY()),
                 Field('post_content', 'text', label='Description'),
+                Field('post_price', 'double'),
                 Field('category', requires=IS_IN_SET(['Book', 'Electronics', 'Clothing', 'Furniture'])), #Pic upload for later
                 Field('post_location', label='Meetup Location', requires=IS_IN_SET(['N/A', 'College 9/10', 'Cowell College'])), #Category and location will be from set values
                 Field('post_time', 'datetime', default=get_current_time())
