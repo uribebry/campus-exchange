@@ -1,8 +1,6 @@
 cache/*
-databases/*
 errors/*
 sessions/*
-uploads/*
 *.pyc
 *~
 .sass-cache
