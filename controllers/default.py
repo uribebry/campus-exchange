@@ -246,5 +246,9 @@ def view_page():
 @auth.requires_login()    
 def saved_posts():
     posts = db(db.saved_posts.user_id == auth.user.id).select()
-    return dict(posts=posts)
+    temp = []
+    for row in posts:
+        temp.append(db(db.listing.id == row.listing_id).select().first())
+
+    return dict(posts=temp)
 
