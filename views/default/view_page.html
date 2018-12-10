@@ -16,7 +16,7 @@
 		<h2>Seller info:</h2>
 		<p>
 			<span class="view_title">First Name:</span>
-			<a _href="{{=URL('default', 'seller_profile',args=['auth_user.email'])}}" class="btn">
+			<a href="{{=URL('default', 'seller_profile',args=[item.id])}}" class="btn">
                 <i ></i> {{=item.seller}} {{=profile.last_name}}
               </a>
 			<br><br>
