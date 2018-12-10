@@ -15,15 +15,22 @@
 	<div class="column left">
 		<h2>Seller info:</h2>
 		<p>
-	  		First Name
-			{{=item.seller}}
-			  <br>
-	 		 Mobile
+			<span class="view_title">First Name:</span>
+			<a _href="{{=URL('default', 'seller_profile',args=['auth_user.email'])}}" class="btn">
+                <i ></i> {{=item.seller}} {{=profile.last_name}}
+              </a>
+			<br><br>
+			<span class="view_title"> Phone: </span>
 			{{=profile.mobile_phone}}
-			  <br>
-	  		Email
+			  <br><br>
+			<span class="view_title"> Email: </span>
 			{{=item.email}}
-			<br>
+			<br><br>
+			<span class="view_title">Date Posted </span>
+			{{=item.date_posted}}
+			<br><br>
+			<span class="view_title"> Is this item available? </span>
+			{{=verdict}}
 	  	</p>
 	</div>
 
@@ -33,26 +40,23 @@
 
 	</div>
 
-	<div class="column right ">
+	<div class="column right wrap">
 		<h2>Item Info:</h2>
     	<p>
-			Item name
+			<span class="view_title">Item name: </span>
 			{{=item.item}}
-			<br>
-			description
+			<br><br>
+			<span class="view_title">Description: </span>
 			{{=item.description}}
-			<br>
-			Price
-			{{=item.price}}
-			<br>
-			college location
+			<br><br>
+			<span class="view_title">Price: </span>
+			${{=item.price}}
+
+			<br><br>
+			<span class="view_title"> College Location: </span>
 			{{=item.college_location}}
 			<br>
-			sold?
-			{{=item.sold}}
-			<br>
-			Date POsted
-			{{=item.date_posted}}
+
 		</p>
 	</div>
 
