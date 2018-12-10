@@ -44,7 +44,7 @@ db.define_table('listing',
                                                      'Porter', 'Merrill', 'Crown',
                                                      'Stevenson', 'Kresge', 'Cowell',
                                                      'College 9', 'College 10','Other'])),
-                Field('date_posted', 'datetime', default=now, writable=False)
+                Field('date_posted', 'datetime', default = request.now, requires = IS_DATE(format=('%m/%d/%Y')), writable=False)
 
                 )
 

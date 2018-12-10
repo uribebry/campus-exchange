@@ -15,10 +15,11 @@
 	<div class="column left">
 		<h2>Seller info:</h2>
 		<p>
-			<span class="view_title">First Name:</span>
+			<span class="view_title">First Name:
 			<a href="{{=URL('default', 'seller_profile',args=[item.id])}}" class="btn">
                 <i ></i> {{=item.seller}} {{=profile.last_name}}
               </a>
+			</span>
 			<br><br>
 			<span class="view_title"> Phone: </span>
 			{{=profile.mobile_phone}}
@@ -27,7 +28,7 @@
 			{{=item.email}}
 			<br><br>
 			<span class="view_title">Date Posted </span>
-			{{=item.date_posted}}
+			{{=item.date_posted.strftime("%m/%d/%Y")}}
 			<br><br>
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
