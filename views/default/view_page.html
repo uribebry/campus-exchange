@@ -22,9 +22,26 @@
 
 	<div class="column left">
 		<h2>Seller info:</h2>
-		<p><strong> First Name: </strong> {{=item.seller}}</p>
-		 <p><strong> Mobile: </strong> {{=profile.mobile_phone}}</p>
-		 <p><strong> Email: </strong> {{=item.email}}</p>
+
+		<p>
+			<span class="view_title">First Name:
+			<a href="{{=URL('default', 'seller_profile',args=[item.id])}}" class="btn">
+                <i ></i> {{=item.seller}} {{=profile.last_name}}
+              </a>
+			</span>
+			<br><br>
+			<span class="view_title"> Phone: </span>
+			{{=profile.mobile_phone}}
+			  <br><br>
+			<span class="view_title"> Email: </span>
+			{{=item.email}}
+			<br><br>
+			<span class="view_title">Date Posted </span>
+			{{=item.date_posted.strftime("%m/%d/%Y")}}
+			<br><br>
+			<span class="view_title"> Is this item available? </span>
+			{{=verdict}}
+	  	</p>
 
 	</div>
 
@@ -34,14 +51,26 @@
 
 	</div>
 
-	<div class="column right ">
+	<div class="column right wrap">
 		<h2>Item Info:</h2>
-		 <p><strong> Name: </strong> {{=item.item}}</p>
-		 <p><strong> Price: </strong> ${{=item.price}}</p>
-		 <p><strong> Description: </strong> {{=item.item}}</p>
-		 <p><strong> Location: </strong> {{=item.college_location}}</p>
-		 <p><strong> Sold?: </strong> {{=item.sold}}</p>
-		 <p><strong> Date Posted: </strong> {{=item.date_posted}}</p>
+
+    	<p>
+			<span class="view_title">Item name: </span>
+			{{=item.item}}
+			<br><br>
+			<span class="view_title">Description: </span>
+			{{=item.description}}
+			<br><br>
+			<span class="view_title">Price: </span>
+			${{=item.price}}
+
+			<br><br>
+			<span class="view_title"> College Location: </span>
+			{{=item.college_location}}
+			<br>
+
+		</p>
+
 	</div>
 
 	<div class="column right_blank">

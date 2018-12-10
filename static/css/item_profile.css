@@ -32,5 +32,13 @@ background-color:#cccc;
 
 .right{
 background-color:#cccc;
+}
 
+.view_title{
+font-size:15px;
+font-weight:bold;
+}
+
+.view_info{
+font-size:14px;
 }
