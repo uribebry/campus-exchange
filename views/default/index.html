@@ -15,7 +15,7 @@
   <div class="container-fluid">
     <div class="row justify-content-md-center">
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Books'])}}" class="card zoom" class="card zoom">
           {{=IMG(_src=URL('static', 'images/books.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Books</div>
@@ -23,7 +23,7 @@
         </a>
       </div>
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Electronics'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/electronics.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Electronics</div>
@@ -31,7 +31,7 @@
         </a>
       </div>
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Clothes'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/clothes.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Clothes</div>
@@ -44,7 +44,7 @@
 
     <div class="row justify-content-md-center">
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Furniture'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/furniture.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Furniture</div>
@@ -52,7 +52,7 @@
         </a>
       </div>
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Tutor'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/tutor.png'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Tutor</div>
@@ -60,7 +60,7 @@
         </a>
       </div>
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'add')}}" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Haircut'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/haircut.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Haircut</div>
@@ -70,6 +70,17 @@
     </div>
 
     <br>
+
+    <div class="row justify-content-md-center">
+      <div class="col-sm-3">
+        <a href="{{=URL('default', 'posting', args=['all'])}}" class="card zoom">
+          {{=IMG(_src=URL('static', 'images/all.jpg'), _class="card-img-top")}}
+          <div class="blur_text">
+            <div class="text">ALL</div>
+          </div>
+        </a>
+      </div>
+    </div>
 
   </div>
 

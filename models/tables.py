@@ -11,22 +11,12 @@ import datetime
 
 def get_user_email():
     return auth.user.email if auth.user is not None else None
+  
+def get_name():
+    return auth.user.first_name if auth.user is not None else None
 
-def get_current_time():
-    return datetime.datetime.utcnow()
-
-db.define_table('post',
-                Field('user_id', 'reference auth_user', default=auth.user if auth.user is not None else None),
-                Field('post_title', label='Title', requires=IS_NOT_EMPTY()),
-                Field('post_content', 'text', label='Description'),
-                Field('post_price', 'double'),
-                Field('category', requires=IS_IN_SET(['Book', 'Electronics', 'Clothing', 'Furniture'])), #Pic upload for later
-                Field('post_location', label='Meetup Location', requires=IS_IN_SET(['N/A', 'College 9/10', 'Cowell College'])), #Category and location will be from set values
-                Field('post_time', 'datetime', default=get_current_time())
-                )
-
-db.post.user_id.writable = False
-db.post.post_time.readable = db.post.post_time.writable = False
+def get_user_id():
+    return auth.user.id if auth.user is not None else None
 
 db.define_table('checklist',
                 Field('user_email', default=get_user_email()),
@@ -35,13 +25,45 @@ db.define_table('checklist',
                 Field('updated_on', 'datetime', update=datetime.datetime.utcnow()),
                 Field('is_public', 'boolean', default=False))
 
+db.define_table('listing',
+                Field('item'),
+                Field('category',requires=IS_IN_SET(['Books', 'Electronics',
+                                                     'Clothes', 'Furniture', 'Tutor',
+                                                     'Haircut'])),
+                Field('price', 'decimal(6,2)'),
+                Field('sold', 'boolean', default=False),
+                Field('image', 'upload'),
+                Field('seller', default=get_name()),
+                Field('user_id', default=get_user_id()),
+                Field('phone'),
+                Field('email', default=get_user_email()),
+                Field('likes', 'integer', default=0),
+                Field('description', 'text'),
+                Field('college_location',requires=IS_IN_SET(['Oakes', 'Rachael Carson',
+                                                     'Porter', 'Merrill', 'Crown',
+                                                     'Stevenson', 'Kresge', 'Cowell',
+                                                     'College 9', 'College 10','Other'])),
+                # Field('date_posted', 'date', default=request.now)
+                )
+
 db.checklist.user_email.writable = False
 db.checklist.user_email.readable = False
 db.checklist.updated_on.writable = db.checklist.updated_on.readable = False
 db.checklist.id.writable = db.checklist.id.readable = False
-
 # Hides the check box 'is_public' for the user when creating a memo
 db.checklist.is_public.readable = db.checklist.is_public.writable = False
+
+
+db.listing.sold.writable = False
+db.listing.likes.writable = db.listing.likes.writable = False
+db.listing.user_id.writable = db.listing.user_id.readable = False
+db.listing.seller.writable = False
+db.listing.phone.writable = db.listing.phone.readable = False
+# db.listing.date_posted.writable = False
+# db.listing.description.readable = False
+
+
+db.listing.email.writable = db.listing.email.readable = False
 
 # after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

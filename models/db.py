@@ -59,27 +59,54 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # (more options discussed in gluon/tools.py)
 
 from gluon.tools import Auth, Service, PluginManager
+from datetime import datetime
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
 
+#START OF PERSONAL CODE
+#Adding fields to auth_user table
+auth.settings.extra_fields['auth_user']= \
+    [
+    Field('venmo'),
+    Field('college_affiliation', requires=IS_IN_SET(['Oakes', 'Rachael Carson',
+                                                     'Porter', 'Merrill', 'Crown',
+                                                     'Stevenson', 'Kresge', 'Cowell',
+                                                     'College 9', 'College 10'])),
+    Field('mobile_phone'),
+    Field('Photo','upload'),
+    Field('total_stars', 'double', readable=False,writable=False),
+    Field('stars_rating', 'double', writable=False, default=0),
+    Field('number_of_reviews', 'integer', writable=False, default=0),
+    Field('joined_on', 'datetime', default = request.now, requires = IS_DATE(format=('%m/%d/%Y')), writable =False)
+    ]
+
+#Messing around with having
+#END OF PERSONAL CODE
+
+
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
+db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
+    error_message='Only ucsc.edu email addresses allowed.'))
+
 # configure email
 mail = auth.settings.mailer
-mail.settings.server = 'logging' if request.is_local else myconf.get('smtp.server')
-mail.settings.sender = myconf.get('smtp.sender')
+mail.settings.server = 'logging'
+mail.settings.sender = 'exchangecampus@gmail.com'
 mail.settings.login = myconf.get('smtp.login')
-mail.settings.tls = myconf.get('smtp.tls') or False
-mail.settings.ssl = myconf.get('smtp.ssl') or False
+mail.settings.tls = False
+mail.settings.ssl = False
 
 # configure auth policy
-auth.settings.registration_requires_verification = False
+auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
+auth.settings.auth_two_factor_enabled = False
+
 
 # More API examples for controllers:
 #

@@ -157,6 +157,41 @@ var app = function() {
         )
     };
 
+    self.add_post = function () {
+        // We disable the button, to prevent double submission.
+        $.web2py.disableElement($("#add-post"));
+        var sent_title = self.vue.post_title; // Makes a copy 
+        var sent_price = self.vue.post_price;
+        var sent_description = self.vue.post_description; // 
+        $.post(add_post_url,
+            // Data we are sending.
+            {
+                post_title: self.vue.form_title,
+                post_price: self.vue.form_price,
+                post_content: self.vue.form_content
+            },
+            // What do we do when the post succeeds?
+            function (data) {
+                // Re-enable the button.
+                $.web2py.enableElement($("#add-post"));
+                // Clears the form.
+                self.vue.post_title = "";
+                self.vue.post_price = "";
+                self.vue.post_content = "";
+                // Adds the post to the list of posts. 
+                var new_post = {
+                    id: data.post_id,
+                    post_title: sent_title,
+                    post_price: sent_price
+                    post_content: sent_content
+                };
+                //self.vue.post_list.unshift(new_post);
+                // We re-enumerate the array.
+                //self.process_posts();
+            });
+        // If you put code here, it is run BEFORE the call comes back.
+    };
+
 
     // Complete as needed.
     self.vue = new Vue({
@@ -176,7 +211,11 @@ var app = function() {
             edit_title_content: null,
             edit_memo_content: null,
             original_memo_title: null,
-            original_memo_content: null
+            original_memo_content: null,
+
+            post_title: "",
+            post_price: 0,
+            post_content: ""
         },
         methods: {
             toggle_public_button: self.toggle_public_button,
@@ -187,6 +226,8 @@ var app = function() {
             edit_memo: self.edit_memo,
             edit_memo_submit: self.edit_memo_submit,
             cancel_edit: self.cancel_edit,
+
+            add_post: self.add_post,
         }
 
     });

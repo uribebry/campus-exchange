@@ -1,41 +1,41 @@
 # Here go your api methods.
 
-def get_memos():
-    start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0
-    end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0
-    memos = []
-    has_more = False
+# def get_memos():
+#     start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0
+#     end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0
+#     memos = []
+#     has_more = False
 
-    # If user is logged in, return memos belonging to him as well as public ones
-    if auth.user is not None:
-        rows = db((db.checklist.user_email == auth.user.email) | 
-                        (db.checklist.is_public == 'True')).select(db.checklist.ALL, limitby=(start_idx, end_idx + 1))
-    # Otherwise, return public memos only
-    else:
-        rows = db(db.checklist.is_public == 'True').select(db.checklist.ALL, limitby=(start_idx, end_idx + 1))
+#     # If user is logged in, return memos belonging to him as well as public ones
+#     if auth.user is not None:
+#         rows = db((db.checklist.user_email == auth.user.email) | 
+#                         (db.checklist.is_public == 'True')).select(db.checklist.ALL, limitby=(start_idx, end_idx + 1))
+#     # Otherwise, return public memos only
+#     else:
+#         rows = db(db.checklist.is_public == 'True').select(db.checklist.ALL, limitby=(start_idx, end_idx + 1))
 
-    # Append only the first ten memos to the list
-    for i, r in enumerate(rows):
-        if i < end_idx - start_idx:
-            t = dict(
-                id = r.id,
-                title = r.title,
-                memo = r.memo,
-                user_email = r.user_email,
-                is_public = r.is_public
-            )
-            memos.append(t)
-        else:
-            has_more = True
+#     # Append only the first ten memos to the list
+#     for i, r in enumerate(rows):
+#         if i < end_idx - start_idx:
+#             t = dict(
+#                 id = r.id,
+#                 title = r.title,
+#                 memo = r.memo,
+#                 user_email = r.user_email,
+#                 is_public = r.is_public
+#             )
+#             memos.append(t)
+#         else:
+#             has_more = True
     
-    # Determine if the user is logged in or not
-    logged_in = auth.user is not None
+#     # Determine if the user is logged in or not
+#     logged_in = auth.user is not None
     
-    return response.json(dict(
-        memos=memos,
-        logged_in=logged_in,
-        has_more=has_more
-    ))
+#     return response.json(dict(
+#         memos=memos,
+#         logged_in=logged_in,
+#         has_more=has_more
+#     ))
 
 
 @auth.requires_login()
@@ -87,3 +87,15 @@ def edit_memo():
             memo = request.vars.memo_content,
         )
     return dict()
+
+@auth.requires_signature()
+def add_post():
+    post_id = db.post.insert(
+        post_title=request.vars.post_title,
+        post_price=request.vars.post_price,
+        post_description=request.vars.post_content,
+        post_category=request.vars.post_category,
+        post_location=request.vars.post_location,
+    )
+    # We return the id of the new post, so we can insert it along all the others.
+    return response.json(dict(post_id=post_id))
