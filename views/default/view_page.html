@@ -2,6 +2,14 @@
 
     <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="{{=URL('static','css/user_profile.css')}}" rel="stylesheet" type="text/css"/>
+
 <style>
 	body { background-image: url("images/all.jpg") }
 </style>
@@ -14,6 +22,7 @@
 
 	<div class="column left">
 		<h2>Seller info:</h2>
+
 		<p>
 			<span class="view_title">First Name:
 			<a href="{{=URL('default', 'seller_profile',args=[item.id])}}" class="btn">
@@ -33,16 +42,18 @@
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
 	  	</p>
+
 	</div>
 
 	<div class="column middle wrap">
 		<h2>Photo</h2>
-    	<p>image 		</p>
+    	<img src="/campus/default/download/{{=item.image}}" width="150px" class="hoverZoomLink">
 
 	</div>
 
 	<div class="column right wrap">
 		<h2>Item Info:</h2>
+
     	<p>
 			<span class="view_title">Item name: </span>
 			{{=item.item}}
@@ -59,6 +70,7 @@
 			<br>
 
 		</p>
+
 	</div>
 
 	<div class="column right_blank">
