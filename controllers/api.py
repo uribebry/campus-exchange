@@ -106,5 +106,4 @@ def save_post():
     db.saved_posts.insert(
         listing_id = request.args(0)
     )
-    print(" This is the request variables:", request.args(0))
     return "success"
