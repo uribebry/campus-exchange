@@ -33,7 +33,7 @@ db.define_table('listing',
                                                      'Haircut'])),
                 Field('price', 'decimal(6,2)'),
                 Field('sold', 'boolean', default=False),
-                Field('image', 'upload'),
+                Field('image', 'upload', uploadfield='picture_file'),
                 Field('seller', default=get_name()),
                 Field('user_id', default=get_user_id()),
                 Field('phone'),
@@ -46,6 +46,19 @@ db.define_table('listing',
                                                      'College 9', 'College 10','Other'])),
                 Field('date_posted', 'datetime', default = request.now, requires = IS_DATE(format=('%m/%d/%Y')), writable=False)
 
+                )
+
+db.define_table('saved_posts',
+                Field('user_id', 'reference auth_user', default=get_user_id()),
+                Field('listing_id', 'reference listing')
+                )
+
+db.define_table('messages',
+                Field('sender_id', 'reference auth_user', default=get_user_id()),
+                Field('receiver_id', 'reference auth_user'),
+                Field('listing_id', 'reference listing'),
+                Field('message_content', 'text'),
+                Field('date_sent', 'datetime', default=now, writable=False)
                 )
 
 db.checklist.user_email.writable = False

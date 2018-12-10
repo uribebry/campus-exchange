@@ -248,3 +248,21 @@ def view_page():
         verdict = "No"
     return dict(p=p,item=item_info,profile=profile_info, verdict = verdict)
 
+@auth.requires_login()    
+def saved_posts():
+    posts = db(db.saved_posts.user_id == auth.user.id).select()
+    temp = []
+    for row in posts:
+        temp.append(db(db.listing.id == row.listing_id).select().first())
+
+    return dict(posts=temp)
+
+@auth.requires_login()    
+def inbox():
+    messages = db(db.messages.receiver_id == auth.user.id).select(join=db.listing.on(db.messages.listing_id == db.listing.id))
+    # temp = []
+    # for row in posts:
+    #     temp.append(db(db.listing.id == row.listing_id).select().first())
+
+    return dict(messages=messages)
+

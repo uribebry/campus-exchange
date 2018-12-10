@@ -1,0 +1,54 @@
+{{extend 'layout.html'}}
+
+<div class="mycontent">
+    {{if not messages:}}
+        <h1 style="text-align: center;">
+            No messages!
+        </h1>
+    {{else:}}
+        <div>
+            <div class="card" style="margin: 10px;">
+                <div class="card-header" style="text-align:center;">
+                    <h2>Messages</h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{for message in messages:}}
+                        <li class="list-group-item">
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        <h5>
+                                            <b>From:</b> {{=message.listing.seller}}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <b>Listing:</b> {{=message.listing.item}}
+                                        </h5>
+                                    </td>
+                                    <td>
+                                        <h5>
+                                            <b>Date:</b> {{=message.messages.date_sent}}
+                                        </h5>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target={{="#collapseExample" + str(message.messages.id)}} aria-expanded="false" aria-controls={{="collapseExample" + str(message.messages.id)}}>
+                                            <h5>
+                                               Expand <i class="fa fa-arrow-down"></i>
+                                            </h5>
+                                        </button>     
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="collapse" id={{="collapseExample" + str(message.messages.id)}}>
+                                <div class="card card-body">
+                                    {{=message.messages.message_content}}
+                                </div>
+                            </div>
+                        </li>
+                    {{pass}}
+                </ul>
+            </div>
+        </div>
+    {{pass}}
+</div>

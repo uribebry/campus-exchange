@@ -98,6 +98,12 @@ button:disabled:hover {
   text-transform: uppercase;
 }
 
+.index_tagline {
+    font-weight: lighter;
+    text-align: center;
+    margin-block-end: 5%;
+}
+
 /*div.container {
       width: 100%;
   }

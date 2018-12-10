@@ -99,3 +99,11 @@ def add_post():
     )
     # We return the id of the new post, so we can insert it along all the others.
     return response.json(dict(post_id=post_id))
+
+@auth.requires_login()
+@auth.requires_signature()
+def save_post():
+    db.saved_posts.insert(
+        listing_id = request.args(0)
+    )
+    return "success"

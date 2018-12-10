@@ -12,10 +12,23 @@
 {{end}}
 
 <div class="main_content">
+  <h1 class="index_tagline">
+    <span style="font-size: 200%;">
+        <b>
+          <span style="color:#16BAC5">Buy.</span> 
+          <span style="color:#6bf745">Sell.</span> 
+          <span style="color:#ff5050">Trade.</span>
+        </b><br/>
+    </span>
+    <span style="font-size:130%">Do it all with <b>Campus Exchange!</b>
+        <br/>
+    </span>
+  </h1>
+
   <div class="container-fluid">
     <div class="row justify-content-md-center">
       <div class="col-sm-3">
-        <a href="{{=URL('default', 'posting', args=['Books'])}}" class="card zoom" class="card zoom">
+        <a href="{{=URL('default', 'posting', args=['Books'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/books.jpg'), _class="card-img-top")}}
           <div class="blur_text">
             <div class="text">Books</div>
@@ -55,7 +68,7 @@
         <a href="{{=URL('default', 'posting', args=['Tutor'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/tutor.png'), _class="card-img-top")}}
           <div class="blur_text">
-            <div class="text">Tutor</div>
+            <div class="text">Tutoring</div>
           </div>
         </a>
       </div>
@@ -63,7 +76,7 @@
         <a href="{{=URL('default', 'posting', args=['Haircut'])}}" class="card zoom">
           {{=IMG(_src=URL('static', 'images/haircut.jpg'), _class="card-img-top")}}
           <div class="blur_text">
-            <div class="text">Haircut</div>
+            <div class="text">Haircuts</div>
           </div>
         </a>
       </div>

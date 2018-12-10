@@ -1,0 +1,55 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var is_logged_in = {{='false' if auth.user is None else 'true'}};
+</script>
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+{{end}}
+
+
+<div class="mycontent">
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Sold?</th>
+            <th>Seller</th>
+            <th>Email</th>
+            <th>Description</th>
+            <th>College Location</th>
+            <th>Date Posted</th>
+        </tr>
+        {{for item in posts:}}
+            <tr>
+                <td>{{=item.category}}</td>
+                <td>{{=item.item}}</td>
+                <td>{{=item.price}}</td>
+                <td>{{=item.sold}}</td>
+                <td>{{=item.seller}}</td>
+                <td>{{=item.email}}</td>
+                <td>{{=item.description}}</td>
+                <td>{{=item.college_location}}</td>
+                <td>{{=item.date_posted}}</td>
+            </tr>
+        {{pass}}
+    </table>
+</div>
