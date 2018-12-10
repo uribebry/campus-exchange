@@ -83,7 +83,8 @@ def add():
                 'category',
                 'price',
                 'image',
-                'description']
+                'description',
+                 'college_location']
                 )
     if grid.process().accepted:
         session.flash = T('Post Added')
@@ -178,12 +179,13 @@ def posting():
         return b
 
     def viewButton(row):
-        b = A('View', _class='btn btn-info', _href=URL('default','view',args=[row.id]))
+        b = A('View', _class='btn btn-info', _href=URL('default','view_page',args=[row.id]))
         return b
 
     def profileButton(row):
-        b = A('Profile', _class='btn btn-info', _href=URL('default','profile',args=[row.user_id]))
+        b = A('Profile', _class='btn btn-info', _href=URL('default','seller_profile',args=[row.id]))
         return b
+
     
     # all the buttons for posting.html
     links = [
@@ -222,7 +224,22 @@ def posting():
         )
 
     add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
-
     return dict(grid=grid, add=add)
 
+@auth.requires_login()
+def seller_profile():
+    p = db.listing(request.args(0)) or redirect(URL('default', 'seller_profile'))
+    post_id = request.args(0)
+    info = db(db.listing.id == post_id).select().first()
+    seller_email =  info.email
+    profile_info = db(db.auth_user.email==seller_email).select().first()
+    return dict(p=p,profile=profile_info)
+
+def view_page():
+    p = db.listing(request.args(0)) or redirect(URL('default', 'view_page'))
+    post_id = request.args(0)
+    item_info = db(db.listing.id == post_id).select().first()
+    user_info = item_info.email
+    profile_info = db(db.auth_user.email==user_info).select().first()
+    return dict(p=p,item=item_info,profile=profile_info)
 

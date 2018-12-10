@@ -215,7 +215,6 @@ var app = function() {
 
             post_title: "",
             post_price: 0,
-            post_content: ""
         },
         methods: {
             toggle_public_button: self.toggle_public_button,
