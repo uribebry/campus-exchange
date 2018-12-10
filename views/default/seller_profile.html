@@ -21,7 +21,7 @@
                             <p><strong> College Affliation: </strong> {{=profile.college_affiliation}}</p>
                             <p><strong> Phone: </strong> {{=profile.mobile_phone}}</p>
                             <p><strong> Venmo: </strong> {{=profile.venmo}}</p>
-                            <p><strong> Joined: </strong> {{=profile.joined_on}}</p>
+                            <p><strong> Joined: </strong> {{=profile.joined_on.strftime("%m/%d/%Y")}}</p>
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
