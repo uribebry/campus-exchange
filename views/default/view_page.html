@@ -1,36 +1,124 @@
 {{extend 'layout.html'}}
 
+    <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
 
-<div>
-	First Name
+<style>
+	body { background-image: url("images/all.jpg") }
+</style>
+
+
+<div class="image1">
+	<br><br><br>
+	<div class="column left_blank" >
+	</div>
+
+	<div class="column left">
+		<h2>Seller info:</h2>
+	  	<p>
+	  	First Name
 		{{=item.seller}}
-	<br>
+		  <br>
+	 	 Mobile
+		{{=profile.mobile_phone}}
+		  <br>
+	  	Email
+		{{=item.email}}
+		<br>
+	  </p>
+	</div>
 
+	<div class="column middle">
+		<h2>Photo</h2>
+    <p>image
+	{{=item.image}}</p>
+	</div>
 
-	Item name
+	<div class="column right">
+		<h2>Item Info:</h2>
+    <p>
+		Item name
 	{{=item.item}}
-	<br>
+		<br>
+	description
+	{{=item.description}}
+		<br>
 	Price
 	{{=item.price}}
-	<br>
+		<br>
+	college location
+	{{=item.college_location}}
+		<br>
 	sold?
 	{{=item.sold}}
 	<br>
-	image
-	{{=item.image}}
-	<br>
-	phone
-	{{=profile.mobile_phone}}
-	<br>
-	email
-	{{=item.email}}
-	<br>
-	description
-	{{=item.description}}
-	<br>
-	college location
-	{{=item.college_location}}
+	</p>
+	</div>
+
+	<div class="column right_blank">
+	</div>
+
+
+
 </div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<div >
+  <div class="column" >
+    <h2>Seller info:</h2>
+	  <p>
+	  First Name
+		{{=item.seller}}
+		  <br>
+	  Mobile
+		{{=profile.mobile_phone}}
+		  <br>
+	  Email
+		{{=item.email}}
+	<br>
+	  </p>
+</div>
+  <div class="column wrap" style="background-color:#bbb;">
+    <h2>Photo</h2>
+    <p>image
+	{{=item.image}}</p>
+  </div>
+  <div class="column" style="background-color:#ccc;">
+    <h2>Item Info:</h2>
+    <p>
+		Item name
+	{{=item.item}}
+		<br>
+	description
+	{{=item.description}}
+		<br>
+	Price
+	{{=item.price}}
+		<br>
+	college location
+	{{=item.college_location}}
+		<br>
+	sold?
+	{{=item.sold}}
+	<br>
+
+	</p>
+  </div>
+</div>
