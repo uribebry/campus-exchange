@@ -51,8 +51,9 @@
       <ul>
         <div class="menu_bar">
           {{if auth.user:}}
-          <li><a href="{{=URL('default', 'add')}}">Post</a></li>
+          <li><a href="{{=URL('default', 'add')}}">Add Post <i class="fa fa-plus"></i></a></li>
           <li><a href="{{=URL('default', 'saved_posts')}}">Saved Posts</a></li>
+          <li><a href="{{=URL('default', 'inbox')}}">Inbox</a></li>
           {{pass}}
           <li>
             <form action="/campusexchange/default/posting/all?keywords=" enctype="multipart/form-data" method="GET">

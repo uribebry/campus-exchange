@@ -252,3 +252,12 @@ def saved_posts():
 
     return dict(posts=temp)
 
+@auth.requires_login()    
+def inbox():
+    messages = db(db.messages.receiver_id == auth.user.id).select(join=db.listing.on(db.messages.listing_id == db.listing.id))
+    # temp = []
+    # for row in posts:
+    #     temp.append(db(db.listing.id == row.listing_id).select().first())
+
+    return dict(messages=messages)
+

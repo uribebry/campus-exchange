@@ -1,0 +1,25 @@
+{{extend 'layout.html'}}
+
+<div class="mycontent">
+    {{if not messages:}}
+        <h1 style="text-align: center;">
+            No messages!
+        </h1>
+    {{else:}}
+        <div>
+            {{=messages}}
+            <div class="card" style="margin: 10px;">
+                <div class="card-header" style="text-align:center;">
+                    <h2>Messages</h2>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{for message in messages:}}
+                        <li class="list-group-item">
+                            This is some text within a card body.
+                        </li>
+                    {{pass}}
+                </ul>
+            </div>
+        </div>
+    {{pass}}
+</div>
