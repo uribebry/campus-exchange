@@ -1,0 +1,61 @@
+{{extend 'layout.html'}}
+
+    <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
+
+<style>
+	body { background-image: url("images/all.jpg") }
+</style>
+
+
+<div class="image1">
+	<br><br><br>
+	<div class="column left_blank" >
+	</div>
+
+	<div class="column left">
+		<h2>Seller info:</h2>
+		<p>
+	  		First Name
+			{{=item.seller}}
+			  <br>
+	 		 Mobile
+			{{=profile.mobile_phone}}
+			  <br>
+	  		Email
+			{{=item.email}}
+			<br>
+	  	</p>
+	</div>
+
+	<div class="column middle wrap">
+		<h2>Photo</h2>
+    	<p>image 		</p>
+
+	</div>
+
+	<div class="column right ">
+		<h2>Item Info:</h2>
+    	<p>
+			Item name
+			{{=item.item}}
+			<br>
+			description
+			{{=item.description}}
+			<br>
+			Price
+			{{=item.price}}
+			<br>
+			college location
+			{{=item.college_location}}
+			<br>
+			sold?
+			{{=item.sold}}
+			<br>
+			Date POsted
+			{{=item.date_posted}}
+		</p>
+	</div>
+
+	<div class="column right_blank">
+	</div>
+</div>

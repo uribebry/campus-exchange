@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+
+    <link href="{{=URL('static','css/item_profile.css')}}" rel="stylesheet" type="text/css"/>
+
+<p>
+        First name
+    {{=profile.first_name}}<br>
+    Last Name{{=profile.last_name}}<br>
+    EMAIL{{=profile.email}}<br>
+    Venmo {{=profile.venmo}}<br>
+    college affil{{=profile.college_affiliation}}<br>
+    Phone{{=profile.mobile_phone}}<br>
+    stars rating{{=profile.stars_rating}}<br>
+    # of reviews{{=profile.number_of_reviews}}<br>
+    joined on{{=profile.joined_on}}<br>
+</p>

@@ -1,0 +1,36 @@
+.column {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height:75%;
+    text-align:center;
+}
+
+.wrap{
+word-wrap:break-word;
+}
+
+.image1{
+background-image: url("/campus_exchange/static/images/all.jpg");
+height: 75%;
+background-position:50% 50%;
+}
+
+.left_blank{
+}
+
+.right_blank{
+}
+
+.left{
+background-color:#cccc;
+}
+
+.middle{
+background-color:#cccc;
+}
+
+.right{
+background-color:#cccc;
+
+}
