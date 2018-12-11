@@ -58,14 +58,14 @@ response.form_label_separator = myconf.get('forms.separator') or ''
 # - old style crud actions
 # (more options discussed in gluon/tools.py)
 
-from gluon.tools import Auth, Service, PluginManager
+from gluon.tools import Mail, Auth, Service, PluginManager
 from datetime import datetime
 
 # host names must be a list of allowed host names (glob syntax allowed)
 auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
-
+mail = Mail()
 #START OF PERSONAL CODE
 #Adding fields to auth_user table
 auth.settings.extra_fields['auth_user']= \
@@ -90,15 +90,15 @@ auth.settings.extra_fields['auth_user']= \
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
-db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
-    error_message='Only ucsc.edu email addresses allowed.'))
+# db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
+#     error_message='Only ucsc.edu email addresses allowed.'))
 
 # configure email
 mail = auth.settings.mailer
-mail.settings.server = 'logging'
+mail.settings.server = 'smtp.gmail.com:587'
 mail.settings.sender = 'exchangecampus@gmail.com'
-mail.settings.login = myconf.get('smtp.login')
-mail.settings.tls = False
+mail.settings.login = 'exchangecampus@gmail.com:campus_exchange12'
+mail.settings.tls = True
 mail.settings.ssl = False
 
 # configure auth policy
