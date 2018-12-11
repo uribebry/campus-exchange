@@ -42,3 +42,8 @@ font-weight:bold;
 .view_info{
 font-size:14px;
 }
+
+.textbox{
+width: 200px;
+height: 50px
+}

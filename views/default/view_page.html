@@ -5,10 +5,12 @@
     var save_post_url = "{{=URL('api', 'save_post', user_signature=True)}}";
 
 </script>
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
@@ -54,8 +56,43 @@
 		<img src="{{=URL('download', args=item.image)}}" width="150px" class="hoverZoomLink">
     <br><br>
     <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
-    <a href="{{=URL('default', 'create_message')}}" class="btn">Message Seller</a>
+	<a class="btn" data-toggle="modal" data-target="#myModal">Message Seller</a>
 	</div>
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+			<h4 class="modal-title">Send a message!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div class="modal-body">
+			<p>What is the message you would like to send? </p>
+			<input type="text" class="textbox">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Send</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
 
 	<div class="column right wrap">
 		<h2>Item Info:</h2>

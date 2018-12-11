@@ -254,7 +254,11 @@ def view_page():
         verdict = "Yes"
     elif available == True:
         verdict = "No"
-    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict)
+    form = SQLFORM(db.messages,
+                   fields=['message_content',
+                           'date_sent']
+                   )
+    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict,form=form)
 
 @auth.requires_login()    
 def saved_posts():
@@ -273,8 +277,4 @@ def inbox():
     #     temp.append(db(db.listing.id == row.listing_id).select().first())
     return dict(messages=messages)
 
-
-def create_message():
-    p = redirect(URL('default', 'create_message'))
-    return dict(p=p)
 
