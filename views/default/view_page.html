@@ -102,7 +102,6 @@
 
 	<div class="column right wrap">
 		<h2>Item Info:</h2>
-		<p id="demo"></p>
     	<p>
 			<span class="view_title">Item name: </span>
 			{{=item.item}}
@@ -127,7 +126,6 @@
 	<script>
 	function get_message() {
     var message = document.getElementById("user_message").value;
-    document.getElementById("demo").innerHTML = message;
     $.post(message_save_url, {
 			message: message,
 			list_id: {{=item.id}},
