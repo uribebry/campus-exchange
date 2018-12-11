@@ -41,7 +41,7 @@
 			{{=item.email}}
 			<br><br>
 			<span class="view_title">Date Posted </span>
-			{{=item.date_posted}}
+			{{=item.date_posted.strftime("%m/%d/%Y")}}
 			<br><br>
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
@@ -67,13 +67,9 @@
 			<br><br>
 			<span class="view_title">Price: </span>
 			${{=item.price}}
-
 			<br><br>
 			<span class="view_title"> College Location: </span>
 			{{=item.college_location}}
-			<br>
-			<span class="view_title">	sold? </span>
-			{{=verdict}}
 			<br>
 
 		</p>
