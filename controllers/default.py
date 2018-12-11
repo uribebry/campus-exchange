@@ -129,7 +129,7 @@ def delete():
     #Function to delete listings
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting')) 
     print(request.vars.category)
-    if p.user_id != auth.user.id:
+    if int(p.user_id) != auth.user.id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting', args=[p.category]))
     # confirm = FORM.confirm('delete listing')
