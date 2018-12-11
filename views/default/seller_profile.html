@@ -25,7 +25,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <img src="/campus/default/download/{{=profile.Photo}}" width="150px" class="hoverZoomLink">
+                                <img src="{{=URL('download', args=profile.Photo)}}" width="150px" class="hoverZoomLink">
                                 <figcaption>
                                     <p><strong>Rating </strong>{{=profile.stars_rating}}</p>
                                     <p>{{=profile.number_of_reviews}} reviews</p>
