@@ -41,7 +41,7 @@
 			{{=item.email}}
 			<br><br>
 			<span class="view_title">Date Posted </span>
-			{{=item.date_posted.strftime("%m/%d/%Y")}}
+			{{=item.date_posted}}
 			<br><br>
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
@@ -50,9 +50,9 @@
 	</div>
 
 	<div class="column middle wrap">
-        <h2>Photo</h2>
-        <!--{{=URL('default', 'download', args=item.image)}}-->
-    	<img src="/CE/default/download/{{=item.image}}" width="150px" class="hoverZoomLink"></img>
+		<h2>Photo</h2>
+		<img src="{{=URL('download', args=item.image)}}" width="150px" class="hoverZoomLink">
+
 
 	</div>
 
@@ -73,11 +73,10 @@
 			<span class="view_title"> College Location: </span>
 			{{=item.college_location}}
 			<br>
-			sold?
-			{{=item.sold}}
+			<span class="view_title">	sold? </span>
+			{{=verdict}}
 			<br>
-			Date Posted
-			{{=item.date_posted}}
+
 		</p>
     </div>
     <div>
