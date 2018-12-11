@@ -111,7 +111,7 @@ def view():
 def edit():
     #Function to edit listings
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
-    if p.user_id != auth.user_id:
+    if int(p.user_id) != auth.user_id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting'))
     grid = SQLFORM(db.listing, record=p)
