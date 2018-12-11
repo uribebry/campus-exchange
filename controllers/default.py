@@ -110,6 +110,12 @@ def view():
 @auth.requires_login()
 def edit():
     #Function to edit listings
+    db.listing.id.readable=False
+    db.listing.sold.readable=False
+    db.listing.likes.readable=False
+    db.listing.date_posted.readable=False
+    db.listing.seller.readable=False
+
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
     if int(p.user_id) != auth.user_id:
         session.flash = T('You are not authorized!')
