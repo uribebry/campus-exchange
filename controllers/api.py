@@ -111,9 +111,11 @@ def save_post():
     return dict(p=p)
 
 def message_save():
-    content = request.vars.content
+    post_id = int(request.vars.list_id)
+    message = request.vars.message
     db.messages.insert(
-        message_content = content,
+        message_content = message,
+        listing_id = post_id,
         )
     return "ok"
 
