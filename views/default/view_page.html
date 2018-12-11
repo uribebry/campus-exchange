@@ -46,18 +46,16 @@
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
 	  	</p>
-
 	</div>
 
 	<div class="column middle wrap">
 		<h2>Photo</h2>
-
-
+		<br><br><br><br><br>
+		<a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
 	</div>
 
 	<div class="column right wrap">
 		<h2>Item Info:</h2>
-
     	<p>
 			<span class="view_title">Item name: </span>
 			{{=item.item}}
@@ -71,11 +69,7 @@
 			<span class="view_title"> College Location: </span>
 			{{=item.college_location}}
 			<br>
-
 		</p>
-    </div>
-    <div>
-        <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
     </div>
 
 	<div class="column right_blank">
