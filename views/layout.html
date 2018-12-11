@@ -56,7 +56,7 @@
           <li><a href="{{=URL('default', 'inbox')}}">Inbox</a></li>
           {{pass}}
           <li>
-            <form action="/campusexchange/default/posting/all?keywords=" enctype="multipart/form-data" method="GET">
+            <form action="{{=URL('default', 'posting', args='all')}}" enctype="multipart/form-data" method="GET">
               <li>
                 <input class="form-control" id="w2p_keywords" name="keywords" onfocus="jQuery('#w2p_query_fields').change();jQuery('#w2p_query_panel').slideDown();" type="text" value="" />
               </li>
