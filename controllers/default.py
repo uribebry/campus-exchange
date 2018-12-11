@@ -114,7 +114,12 @@ def edit():
     if int(p.user_id) != auth.user_id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting'))
-    grid = SQLFORM(db.listing, record=p)
+    grid = SQLFORM(db.listing, record=p, showid=False,
+                fields =['item',
+                        'category',
+                        'price',
+                        'image',
+                        'description'])
     if grid.process().accepted:
         session.flash = T('updated')
         redirect(URL('default', 'posting', args=[p.id]))
@@ -165,7 +170,7 @@ def posting():
     def deleteButton(row):
         b = ''
         if auth.user and auth.user.id == int(row.user_id):
-            b = A('Delete', _class='btn btn-default', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
+            b = A('Delete', _class='btn btn-info', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
         return b
 
     def editButton(row):
@@ -225,7 +230,7 @@ def posting():
         paginate=15
         )
 
-    add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
+    add = A('Add Post', _class='btn btn-info', _href=URL('default', 'add'))
     return dict(grid=grid, add=add)
 
 @auth.requires_login()
