@@ -88,7 +88,7 @@ def add():
                 )
     if grid.process().accepted:
         session.flash = T('Post Added')
-        redirect(URL('default', 'index'))
+        redirect(URL('default', 'posting', args='all'))
     elif grid.errors:
         session.flash = T('Please correct the info')
     export_classes = dict(csv=True, json=False, html=False,
