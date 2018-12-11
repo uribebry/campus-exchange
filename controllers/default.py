@@ -268,3 +268,6 @@ def inbox():
 
     return dict(messages=messages)
 
+def display_posts():
+    posts = 5
+    return dict(posts=posts)
