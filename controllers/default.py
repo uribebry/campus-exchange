@@ -217,7 +217,7 @@ def posting():
                 db.listing.description,
                 db.listing.price,
                 db.listing.user_id,
-                # db.listing.date_posted
+                db.listing.date_posted
                 ],
         links=links,
         editable=False,
