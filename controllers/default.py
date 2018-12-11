@@ -111,7 +111,7 @@ def view():
 def edit():
     #Function to edit listings
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
-    if p.user_id != auth.user_id:
+    if p.user_id != auth.user.id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting'))
     grid = SQLFORM(db.listing, record=p)
@@ -128,7 +128,7 @@ def edit():
 def delete():
     #Function to delete listings
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
-    if p.user_id != auth.user_id:
+    if p.user_id != auth.user.id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting', args=[p.category]))
     # confirm = FORM.confirm('delete listing')
@@ -255,9 +255,5 @@ def saved_posts():
 @auth.requires_login()    
 def inbox():
     messages = db(db.messages.receiver_id == auth.user.id).select(join=db.listing.on(db.messages.listing_id == db.listing.id))
-    # temp = []
-    # for row in posts:
-    #     temp.append(db(db.listing.id == row.listing_id).select().first())
-
     return dict(messages=messages)
 
