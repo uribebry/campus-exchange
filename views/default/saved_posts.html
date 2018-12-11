@@ -40,15 +40,16 @@
         </tr>
         {{for item in posts:}}
             <tr>
-                <td>{{=item.category}}</td>
-                <td>{{=item.item}}</td>
-                <td>{{=item.price}}</td>
-                <td>{{=item.sold}}</td>
-                <td>{{=item.seller}}</td>
-                <td>{{=item.email}}</td>
-                <td>{{=item.description}}</td>
-                <td>{{=item.college_location}}</td>
-                <td>{{=item.date_posted}}</td>
+                    <td>{{=item.category}}</td>
+                    <td><a href="{{=URL('default', 'view_page',args=[item.id])}}" class="btn">{{=item.item}}</td>
+                    <td>{{=item.price}}</td>
+                    <td>{{=item.sold}}</td>
+                    <td>{{=item.seller}}</td>
+                    <td>{{=item.email}}</td>
+                    <td>{{=item.description}}</td>
+                    <td>{{=item.college_location}}</td>
+                    <td>{{=item.date_posted}}</td>
+                  
             </tr>
         {{pass}}
     </table>
