@@ -19,6 +19,9 @@ def get_name():
 def get_user_id():
     return auth.user.id if auth.user is not None else None
 
+def get_college_location():
+    return auth.user.college_affiliation if auth.user is not None else None
+
 db.define_table('checklist',
                 Field('user_email', default=get_user_email()),
                 Field('title'),
@@ -40,10 +43,7 @@ db.define_table('listing',
                 Field('email', default=get_user_email()),
                 Field('likes', 'integer', default=0),
                 Field('description', 'text'),
-                Field('college_location',requires=IS_IN_SET(['Oakes', 'Rachael Carson',
-                                                     'Porter', 'Merrill', 'Crown',
-                                                     'Stevenson', 'Kresge', 'Cowell',
-                                                     'College 9', 'College 10','Other'])),
+                Field('college_location',default=get_college_location()),
                 Field('date_posted', 'datetime', default=now, writable=False)
 
                 )
@@ -75,6 +75,8 @@ db.listing.likes.writable = db.listing.likes.writable = False
 db.listing.user_id.writable = db.listing.user_id.readable = False
 db.listing.seller.writable = False
 db.listing.phone.writable = db.listing.phone.readable = False
+db.listing.college_location.writable = False
+
 # db.listing.date_posted.writable = False
 # db.listing.description.readable = False
 

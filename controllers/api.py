@@ -103,7 +103,7 @@ def add_post():
 @auth.requires_login()
 @auth.requires_signature()
 def save_post():
-    db.saved_posts.insert(
+    db.saved_posts.update_or_insert(
         listing_id = request.args(0)
     )
     id = request.args(0)

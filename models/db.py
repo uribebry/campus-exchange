@@ -65,7 +65,6 @@ from datetime import datetime
 auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
-
 #START OF PERSONAL CODE
 #Adding fields to auth_user table
 auth.settings.extra_fields['auth_user']= \
@@ -95,10 +94,10 @@ db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
 
 # configure email
 mail = auth.settings.mailer
-mail.settings.server = 'logging'
+mail.settings.server = 'smtp.gmail.com:587'
 mail.settings.sender = 'exchangecampus@gmail.com'
-mail.settings.login = myconf.get('smtp.login')
-mail.settings.tls = False
+mail.settings.login = 'exchangecampus@gmail.com:campus_exchange12'
+mail.settings.tls = True
 mail.settings.ssl = False
 
 # configure auth policy

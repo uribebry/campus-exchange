@@ -46,3 +46,10 @@ span.tags
     font-weight: bold;
     padding: 2px 4px;
     }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
