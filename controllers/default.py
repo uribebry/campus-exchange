@@ -127,8 +127,9 @@ def edit():
 @auth.requires_signature()
 def delete():
     #Function to delete listings
-    p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
-    if p.user_id != auth.user_id:
+    p = db.listing(request.args(0)) or redirect(URL('default', 'posting')) 
+    print(request.vars.category)
+    if p.user_id != auth.user.id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting', args=[p.category]))
     # confirm = FORM.confirm('delete listing')
@@ -136,7 +137,8 @@ def delete():
     # if confirm.accepted:
     db(db.listing.id == p.id).delete()
     session.flash = T('listing is deleted')
-    redirect(URL('default', 'posting',args=[p.category]))
+   
+    redirect(URL('default', 'posting', args='all'))
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
@@ -162,19 +164,19 @@ def posting():
 
     def deleteButton(row):
         b = ''
-        if auth.user_id == row.user_id:
-            b = A('Delete', _class='btn btn-info', _href=URL('default', 'delete', args=[row.id], user_signature=True))
+        if auth.user.id == int(row.user_id):
+            b = A('Delete', _class='btn btn-info', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
         return b
 
     def editButton(row):
         b = ''
-        if auth.user_id == row.user_id:
+        if auth.user.id == int(row.user_id):
             b = A('Edit', _class='btn btn-info', _href=URL('default', 'edit', args=[row.id]))
         return b
 
     def soldButton(row):
         b = ''
-        if auth.user_id == row.user_id:
+        if auth.user.id == int(row.user_id):
             b = A('Sold/Not Sold', _class='btn btn-info', _href=URL('default', 'soldCheck', args=[row.id], user_signature=True))
         return b
 
