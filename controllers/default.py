@@ -142,8 +142,7 @@ def delete():
     # if confirm.accepted:
     db(db.listing.id == p.id).delete()
     session.flash = T('listing is deleted')
-   
-    redirect(URL('default', 'posting', args='all'))
+    redirect(URL('default', 'posting', args=[p.category]))
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
