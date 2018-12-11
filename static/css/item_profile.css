@@ -42,3 +42,9 @@ font-weight:bold;
 .view_info{
 font-size:14px;
 }
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}

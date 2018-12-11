@@ -165,7 +165,7 @@ def posting():
     def deleteButton(row):
         b = ''
         if auth.user.id == int(row.user_id):
-            b = A('Delete', _class='btn btn-info', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
+            b = A('Delete', _class='btn btn-default', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
         return b
 
     def editButton(row):
