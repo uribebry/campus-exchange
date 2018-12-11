@@ -54,7 +54,7 @@
 		<img src="{{=URL('download', args=item.image)}}" width="150px" class="hoverZoomLink">
     <br><br>
     <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
-    <a href="{{=URL('default', 'new_message', user_signature=True)}}" class="btn">Message Seller</a>
+    <a href="{{=URL('default', 'create_message')}}" class="btn">Message Seller</a>
 	</div>
 
 	<div class="column right wrap">
