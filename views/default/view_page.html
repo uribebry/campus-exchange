@@ -125,7 +125,8 @@
     document.getElementById("demo").innerHTML = message;
     $.post(message_save_url, {
 			message: message,
-			list_id: {{=item.id}}
+			list_id: {{=item.id}},
+			receive: {{=profile.id}}
         });
 	}
 	</script>
