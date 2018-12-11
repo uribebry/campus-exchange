@@ -88,7 +88,7 @@ def add():
                 )
     if grid.process().accepted:
         session.flash = T('Post Added')
-        redirect(URL('default', 'index'))
+        redirect(URL('default', 'posting', args='all'))
     elif grid.errors:
         session.flash = T('Please correct the info')
     export_classes = dict(csv=True, json=False, html=False,
@@ -110,11 +110,22 @@ def view():
 @auth.requires_login()
 def edit():
     #Function to edit listings
+    db.listing.id.readable=False
+    db.listing.sold.readable=False
+    db.listing.likes.readable=False
+    db.listing.date_posted.readable=False
+    db.listing.seller.readable=False
+
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
     if int(p.user_id) != auth.user_id:
         session.flash = T('You are not authorized!')
         redirect(URL('default', 'posting'))
-    grid = SQLFORM(db.listing, record=p)
+    grid = SQLFORM(db.listing, record=p, showid=False,
+                fields =['item',
+                        'category',
+                        'price',
+                        'image',
+                        'description'])
     if grid.process().accepted:
         session.flash = T('updated')
         redirect(URL('default', 'posting', args=[p.id]))
@@ -137,8 +148,7 @@ def delete():
     # if confirm.accepted:
     db(db.listing.id == p.id).delete()
     session.flash = T('listing is deleted')
-   
-    redirect(URL('default', 'posting', args='all'))
+    redirect(URL('default', 'posting', args=[p.category]))
     export_classes = dict(csv=True, json=False, html=False,
     tsv=False, xml=False, csv_with_hidden_cols=False,
     tsv_with_hidden_cols=False)
@@ -213,7 +223,7 @@ def posting():
                 db.listing.description,
                 db.listing.price,
                 db.listing.user_id,
-                # db.listing.date_posted
+                db.listing.date_posted
                 ],
         links=links,
         editable=False,
@@ -225,7 +235,7 @@ def posting():
         paginate=15
         )
 
-    add = A('Add Post', _class='btn btn-default', _href=URL('default', 'add'))
+    add = A('Add Post', _class='btn btn-info', _href=URL('default', 'add'))
     return dict(grid=grid, add=add)
 
 @auth.requires_login()
@@ -248,7 +258,11 @@ def view_page():
         verdict = "Yes"
     elif available == True:
         verdict = "No"
-    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict)
+    form = SQLFORM(db.messages,
+                   fields=['message_content',
+                           'date_sent']
+                   )
+    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict,form=form)
 
 @auth.requires_login()    
 def saved_posts():
@@ -262,6 +276,10 @@ def saved_posts():
 @auth.requires_login()    
 def inbox():
     messages = db(db.messages.receiver_id == auth.user.id).select(join=db.listing.on(db.messages.listing_id == db.listing.id))
+    # temp = []
+    # for row in posts:
+    #     temp.append(db(db.listing.id == row.listing_id).select().first())
+
     return dict(messages=messages)
 
 def display_posts():
