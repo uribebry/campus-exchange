@@ -102,7 +102,7 @@ mail.settings.tls = False
 mail.settings.ssl = False
 
 # configure auth policy
-auth.settings.registration_requires_verification = True
+auth.settings.registration_requires_verification = False
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 auth.settings.auth_two_factor_enabled = False
