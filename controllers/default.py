@@ -271,6 +271,8 @@ def inbox():
     # temp = []
     # for row in posts:
     #     temp.append(db(db.listing.id == row.listing_id).select().first())
-
     return dict(messages=messages)
+
+
+
 

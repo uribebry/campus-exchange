@@ -109,3 +109,9 @@ def save_post():
     id = request.args(0)
     p = redirect(URL('default', 'saved_posts'))
     return dict(p=p)
+
+@auth.requires_login()
+@auth.requires_signature()
+def new_message():
+    p = redirect(URL('default', 'create_message'))
+    return dict(p=p)
