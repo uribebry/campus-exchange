@@ -273,6 +273,12 @@ def inbox():
     #     temp.append(db(db.listing.id == row.listing_id).select().first())
     return dict(messages=messages)
 
+@auth.requires_login()
+@auth.requires_signature()
+def new_message():
+    p = db.listing(request.args(0)) or redirect(URL('default', 'create_message'))
+    return redirect(URL('default','create_message'))
+
 
 
 
