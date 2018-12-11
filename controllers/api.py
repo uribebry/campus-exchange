@@ -110,3 +110,10 @@ def save_post():
     p = redirect(URL('default', 'saved_posts'))
     return dict(p=p)
 
+def message_save():
+    content = request.vars.content
+    db.messages.insert(
+        message_content = content,
+        )
+    return "ok"
+
