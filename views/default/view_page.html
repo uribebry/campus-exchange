@@ -41,24 +41,25 @@
 			{{=item.email}}
 			<br><br>
 			<span class="view_title">Date Posted </span>
-			{{=item.date_posted}}
+			{{=item.date_posted.strftime("%m/%d/%Y")}}
 			<br><br>
 			<span class="view_title"> Is this item available? </span>
 			{{=verdict}}
 	  	</p>
-
 	</div>
 
 	<div class="column middle wrap">
 		<h2>Photo</h2>
+
 		<img src="{{=URL('download', args=item.image)}}" width="150px" class="hoverZoomLink">
+    <br><br>
+    <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
 
 
 	</div>
 
 	<div class="column right wrap">
 		<h2>Item Info:</h2>
-
     	<p>
 			<span class="view_title">Item name: </span>
 			{{=item.item}}
@@ -68,19 +69,11 @@
 			<br><br>
 			<span class="view_title">Price: </span>
 			${{=item.price}}
-
 			<br><br>
 			<span class="view_title"> College Location: </span>
 			{{=item.college_location}}
 			<br>
-			<span class="view_title">	sold? </span>
-			{{=verdict}}
-			<br>
-
 		</p>
-    </div>
-    <div>
-        <a href="{{=URL('api', 'save_post', user_signature=True, args=item.id)}}" class="btn">Save Post</a>
     </div>
 
 	<div class="column right_blank">
