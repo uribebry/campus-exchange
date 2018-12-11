@@ -109,3 +109,15 @@ def save_post():
     id = request.args(0)
     p = redirect(URL('default', 'saved_posts'))
     return dict(p=p)
+
+def message_save():
+    post_id = int(request.vars.list_id)
+    message = request.vars.message
+    getting = (request.vars.receive)
+    db.messages.insert(
+        message_content = message,
+        listing_id = post_id,
+        receiver_id = getting,
+        )
+    return "ok"
+

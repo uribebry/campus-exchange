@@ -192,6 +192,12 @@ var app = function() {
         // If you put code here, it is run BEFORE the call comes back.
     };
 
+self.save_message = function(){
+    $.post(message_save_url, {
+            content:message_content,
+        });
+
+}
 
     // Complete as needed.
     self.vue = new Vue({
@@ -215,6 +221,7 @@ var app = function() {
 
             post_title: "",
             post_price: 0,
+            message_content: "",
         },
         methods: {
             toggle_public_button: self.toggle_public_button,
@@ -227,6 +234,7 @@ var app = function() {
             cancel_edit: self.cancel_edit,
 
             add_post: self.add_post,
+            save_message:self.save_message,
         }
 
     });

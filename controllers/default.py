@@ -110,6 +110,12 @@ def view():
 @auth.requires_login()
 def edit():
     #Function to edit listings
+    db.listing.id.readable=False
+    db.listing.sold.readable=False
+    db.listing.likes.readable=False
+    db.listing.date_posted.readable=False
+    db.listing.seller.readable=False
+
     p = db.listing(request.args(0)) or redirect(URL('default', 'posting'))
     if int(p.user_id) != auth.user_id:
         session.flash = T('You are not authorized!')
@@ -252,7 +258,11 @@ def view_page():
         verdict = "Yes"
     elif available == True:
         verdict = "No"
-    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict)
+    form = SQLFORM(db.messages,
+                   fields=['message_content',
+                           'date_sent']
+                   )
+    return dict(p=p,item=item_info,profile=profile_info, verdict = verdict,form=form)
 
 @auth.requires_login()    
 def saved_posts():
@@ -269,7 +279,6 @@ def inbox():
     # temp = []
     # for row in posts:
     #     temp.append(db(db.listing.id == row.listing_id).select().first())
-
     return dict(messages=messages)
 
 def display_posts():
