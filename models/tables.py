@@ -14,7 +14,7 @@ def get_user_email():
     return auth.user.email if auth.user is not None else None
   
 def get_name():
-    return auth.user.first_name if auth.user is not None else None
+    return (auth.user.first_name + ' ' + auth.user.last_name) if auth.user is not None else None
 
 def get_user_id():
     return auth.user.id if auth.user is not None else None
@@ -32,8 +32,8 @@ db.define_table('checklist',
 db.define_table('listing',
                 Field('item'),
                 Field('category',requires=IS_IN_SET(['Books', 'Electronics',
-                                                     'Clothes', 'Furniture', 'Tutor',
-                                                     'Haircut'])),
+                                                     'Clothes', 'Furniture', 'Tutoring',
+                                                     'Haircuts'])),
                 Field('price', 'decimal(6,2)'),
                 Field('sold', 'boolean', default=False),
                 Field('image', 'upload'),

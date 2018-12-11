@@ -279,8 +279,13 @@ def inbox():
     # temp = []
     # for row in posts:
     #     temp.append(db(db.listing.id == row.listing_id).select().first())
+
     return dict(messages=messages)
 
 def display_posts():
-    posts = 5
+    if request.args(0) == 'all':
+        posts = db().select(db.listing.ALL)
+    else:
+        posts = db(db.listing.category == request.args(0)).select()
+    print(request.args(0))
     return dict(posts=posts)
