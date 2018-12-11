@@ -19,3 +19,7 @@
 .card:nth-child(even) {
     border-color: #FF9797;
 }
+
+.transparent{
+    background:rgba(0,0,0,0.3);
+  }

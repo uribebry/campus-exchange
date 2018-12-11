@@ -3,12 +3,12 @@
 <link href="{{=URL('static','css/post_display.css')}}" rel="stylesheet" type="text/css"/>
 
 <div>
-    {{=posts}}
+    
     <div class="row" style="margin-left: 10px;">
         {{for post in posts:}}
-            <span class="card" style="height: 500px; width: 400px; border-style: solid; border-width: 5px; margin:10px;">
+            <span class="card" style="height: 500px; width: 440px; border-style: solid; border-width: 5px; margin:10px;">
                 {{if post.image:}}
-                    <img src="{{=URL('download', args=post.image)}}" style="width:390px;height:270px;" alt="Card image cap"/>
+                    <img src="{{=URL('download', args=post.image)}}" style="width:430px;height:270px;" alt="Card image cap"/>
                 {{else:}}
                     <img class="card-img-top" src="https://cpb-us-e1.wpmucdn.com/sites.ucsc.edu/dist/6/210/files/2015/06/ucsc-slug-logo.png" height="100px" width="100px" alt="Card image cap"/>
                 {{pass}}
@@ -19,10 +19,10 @@
                         <b>Location:</b> {{=post.college_location}} <br/>
                         <b>Category:</b> {{=post.category}}
                     </h6>
-                    <p class="card-text">{{=post.description}} This is a longer card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.
+                    <p class="card-text">
+                        {{=post.description}}
                     </p>
-
+                    <a href="{{=URL('default','view_page',args=[post.id])}}" class="btn btn-primary">Click here!</a>
                 </div>
             </span>
 
@@ -50,19 +50,6 @@
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-        </div>
-        <div class="card">
-            <img class="card-img" src="..." alt="Card image">
-        </div>
-        <div class="card p-3 text-right">
-            <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
         </div>
         <div class="card">
             <div class="card-body">

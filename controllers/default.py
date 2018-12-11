@@ -165,23 +165,23 @@ def posting():
     def deleteButton(row):
         b = ''
         if auth.user and auth.user.id == int(row.user_id):
-            b = A('Delete', _class='btn btn-default', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
+            b = A('Delete', _class='btn btn-secondary', _href=URL('default', 'delete', args=[row.id], vars=dict(category='row.category'), user_signature=True))
         return b
 
     def editButton(row):
         b = ''
         if auth.user and auth.user.id == int(row.user_id):
-            b = A('Edit', _class='btn btn-info', _href=URL('default', 'edit', args=[row.id]))
+            b = A('Edit', _class='btn btn-primary', _href=URL('default', 'edit', args=[row.id]))
         return b
 
     def soldButton(row):
         b = ''
         if auth.user and auth.user.id == int(row.user_id):
-            b = A('Sold/Not Sold', _class='btn btn-info', _href=URL('default', 'soldCheck', args=[row.id], user_signature=True))
+            b = A('Sold/Not Sold', _class='btn btn-warning', _href=URL('default', 'soldCheck', args=[row.id], user_signature=True))
         return b
 
     def viewButton(row):
-        b = A('View', _class='btn btn-info', _href=URL('default','view_page',args=[row.id]))
+        b = A('View', _class='btn btn-success', _href=URL('default','view_page',args=[row.id]))
         return b
 
     def profileButton(row):
