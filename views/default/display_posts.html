@@ -1,5 +1,77 @@
 {{extend 'layout.html'}}
 
+<link href="{{=URL('static','css/post_display.css')}}" rel="stylesheet" type="text/css"/>
+
 <div>
-    Hello!
+    {{=posts}}
+    <div class="row" style="margin-left: 10px;">
+        {{for post in posts:}}
+            <span class="card" style="height: 500px; width: 400px; border-style: solid; border-width: 5px; margin:10px;">
+                {{if post.image:}}
+                    <img src="{{=URL('download', args=post.image)}}" style="width:390px;height:270px;" alt="Card image cap"/>
+                {{else:}}
+                    <img class="card-img-top" src="https://cpb-us-e1.wpmucdn.com/sites.ucsc.edu/dist/6/210/files/2015/06/ucsc-slug-logo.png" height="100px" width="100px" alt="Card image cap"/>
+                {{pass}}
+                <div class="card-body">
+                    <h5 class="card-title"><b>{{=post.item}}</b> <span style="float:right">${{=post.price}}</span></h5>
+                    <h6>
+                        <b>Seller:</b> <a href="{{=URL('default', 'seller_profile',args=[post.id])}}">{{=post.seller}}</a> <br/>
+                        <b>Location:</b> {{=post.college_location}} <br/>
+                        <b>Category:</b> {{=post.category}}
+                    </h6>
+                    <p class="card-text">{{=post.description}} This is a longer card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.
+                    </p>
+
+                </div>
+            </span>
+
+        <!--<div class="card">
+            <img class="card-img-top" src="..." alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card bg-primary text-white text-center p-3">
+            <blockquote class="blockquote mb-0">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+                <footer class="blockquote-footer">
+                    <small>
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                </footer>
+            </blockquote>
+        </div>
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img" src="..." alt="Card image">
+        </div>
+        <div class="card p-3 text-right">
+            <blockquote class="blockquote mb-0">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                <footer class="blockquote-footer">
+                    <small class="text-muted">
+                        Someone famous in <cite title="Source Title">Source Title</cite>
+                    </small>
+                </footer>
+            </blockquote>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                    content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div> -->
+        {{pass}}
+    </div>
 </div>
