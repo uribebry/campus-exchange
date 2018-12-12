@@ -295,3 +295,11 @@ def erase_message():
     db(db.messages.id == id).delete()
     p = redirect(URL('default', 'inbox'))
     return dict(p=p)
+
+def accept_trans():
+    id = request.args(0)
+    db(db.messages.listing_id == id).delete()
+    db(db.listing.id == id).delete()
+    p = redirect(URL('default', 'index'))
+
+    return dict(p=p)
