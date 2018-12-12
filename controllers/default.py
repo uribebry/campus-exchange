@@ -289,3 +289,9 @@ def display_posts():
         posts = db(db.listing.category == request.args(0)).select()
     print(request.args(0))
     return dict(posts=posts)
+
+def erase_message():
+    id = request.args(0)
+    db(db.messages.id == id).delete()
+    p = redirect(URL('default', 'inbox'))
+    return dict(p=p)

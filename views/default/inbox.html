@@ -18,7 +18,7 @@
                                 <tr>
                                     <td>
                                         <h5>
-                                            <b>From:</b> {{=message.messages.sender_name}}
+                                            <b>From:</b> {{=message.messages.sender_email}}
                                         </h5>
                                     </td>
                                     <td>
@@ -42,7 +42,11 @@
                             </table>
                             <div class="collapse" id={{="collapseExample" + str(message.messages.id)}}>
                                 <div class="card card-body">
-                                    {{=message.messages.message_content}}
+                                    <span>{{=message.messages.message_content}} </span>
+                                </div>
+                                <div>
+                                    <button  >Accept Transaction</button>
+                                    <a href="{{=URL('default', 'erase_message', user_signature=True, args=message.messages.id)}}" class="btn btn-info">Erase</a>
                                 </div>
                             </div>
                         </li>
