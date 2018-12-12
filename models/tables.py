@@ -59,7 +59,8 @@ db.define_table('messages',
                 Field('listing_id', 'reference listing'),
                 Field('message_content', 'text'),
                 Field('date_sent', 'datetime', requires = IS_DATE(format=('%m/%d/%Y')),default=now, writable=False),
-                Field('sender_name', default=get_name())
+                Field('sender_name', default=get_name()),
+                Field('sender_email',default=get_user_email())
                 )
 
 db.checklist.user_email.writable = False

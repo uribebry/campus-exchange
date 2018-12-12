@@ -238,6 +238,7 @@ def posting():
     add = A('Add Post', _class='btn btn-info', _href=URL('default', 'add'))
     return dict(grid=grid, add=add)
 
+#Gets info for other profile
 @auth.requires_login()
 def seller_profile():
     p = db.listing(request.args(0)) or redirect(URL('default', 'seller_profile'))
@@ -247,6 +248,7 @@ def seller_profile():
     profile_info = db(db.auth_user.email==seller_email).select().first()
     return dict(p=p,profile=profile_info)
 
+#Gets the item information and profile info to show on page
 def view_page():
     p = db.listing(request.args(0)) or redirect(URL('default', 'view_page'))
     post_id = request.args(0)
@@ -264,6 +266,7 @@ def view_page():
                    )
     return dict(p=p,item=item_info,profile=profile_info, verdict = verdict,form=form)
 
+#Retrieves posts in order to display them
 @auth.requires_login()    
 def saved_posts():
     posts = db(db.saved_posts.user_id == auth.user.id).select()
@@ -273,6 +276,7 @@ def saved_posts():
 
     return dict(posts=temp)
 
+#Used to get all of the messages in order to display on screen
 @auth.requires_login()    
 def inbox():
     messages = db(db.messages.receiver_id == auth.user.id).select(join=db.listing.on(db.messages.listing_id == db.listing.id))
@@ -282,6 +286,7 @@ def inbox():
 
     return dict(messages=messages)
 
+#self explanatory
 def display_posts():
     if request.args(0) == 'all':
         posts = db().select(db.listing.ALL)
@@ -289,3 +294,19 @@ def display_posts():
         posts = db(db.listing.category == request.args(0)).select()
     print(request.args(0))
     return dict(posts=posts)
+
+#retrieves the listing_id and deletes the message
+def erase_message():
+    id = request.args(0)
+    db(db.messages.id == id).delete()
+    p = redirect(URL('default', 'inbox'))
+    return dict(p=p)
+
+#Used for erasing listing and other messages linked to listing_id
+def accept_trans():
+    id = request.args(0)
+    db(db.messages.listing_id == id).delete()
+    db(db.listing.id == id).delete()
+    p = redirect(URL('default', 'index'))
+
+    return dict(p=p)

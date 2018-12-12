@@ -19,6 +19,12 @@
                                     <td>
                                         <h5>
                                             <b>From:</b> {{=message.messages.sender_name}}
+                                            <!--
+                                            <b>From:</b> {{=message.messages.sender_email}}
+                                            This line can be run locally but not on python anywhere,
+                                            The field is created in the table an it stores correct value but
+                                            for some reason it cannot be displayed correctly in the inbox.html.
+                                            -->
                                         </h5>
                                     </td>
                                     <td>
@@ -32,7 +38,10 @@
                                         </h5>
                                     </td>
                                     <td style="text-align: right;">
-                                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target={{="#collapseExample" + str(message.messages.id)}} aria-expanded="false" aria-controls={{="collapseExample" + str(message.messages.id)}}>
+                                        <button type="button" class="btn btn-primary" data-toggle="collapse"
+                                                data-target={{="#collapseExample" + str(message.messages.id)}}
+                                                aria-expanded="false" aria-controls={{="collapseExample" +
+                                                str(message.messages.id)}}>
                                             <h5>
                                                Expand <i class="fa fa-arrow-down"></i>
                                             </h5>
@@ -42,7 +51,13 @@
                             </table>
                             <div class="collapse" id={{="collapseExample" + str(message.messages.id)}}>
                                 <div class="card card-body">
-                                    {{=message.messages.message_content}}
+                                    <span>{{=message.messages.message_content}} </span>
+                                </div>
+                                <div>
+                                    <a href="{{=URL('default', 'accept_trans', user_signature=True,
+                                                args=message.messages.listing_id)}}" class="btn btn-info">Accept Transaction</a>
+                                    <a href="{{=URL('default', 'erase_message', user_signature=True,
+                                                args=message.messages.id)}}" class="btn btn-info">Erase</a>
                                 </div>
                             </div>
                         </li>

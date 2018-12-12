@@ -72,7 +72,6 @@ def del_memo():
     db(db.checklist.id == request.vars.memo_id).delete()
     return "ok"
 
-
 def edit_memo():
     # If memo id is not null
     if request.vars.id is not None:
@@ -88,6 +87,7 @@ def edit_memo():
         )
     return dict()
 
+#allows to add a post
 @auth.requires_signature()
 def add_post():
     post_id = db.post.insert(
@@ -100,6 +100,7 @@ def add_post():
     # We return the id of the new post, so we can insert it along all the others.
     return response.json(dict(post_id=post_id))
 
+#saves the posts and redirects to corresponding page
 @auth.requires_login()
 @auth.requires_signature()
 def save_post():
@@ -110,6 +111,7 @@ def save_post():
     p = redirect(URL('default', 'saved_posts'))
     return dict(p=p)
 
+#sends the message to the db
 def message_save():
     post_id = int(request.vars.list_id)
     message = request.vars.message
