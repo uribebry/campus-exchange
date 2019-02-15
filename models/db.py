@@ -89,8 +89,8 @@ auth.settings.extra_fields['auth_user']= \
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
-db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
-    error_message='Only ucsc.edu email addresses allowed.'))
+#db.auth_user.email.requires.append(IS_MATCH(r'.*@ucsc\.edu$',
+ #   error_message='Only ucsc.edu email addresses allowed.'))
 
 # configure email
 mail = auth.settings.mailer
